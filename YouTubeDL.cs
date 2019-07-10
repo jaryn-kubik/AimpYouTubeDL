@@ -65,7 +65,7 @@ namespace AIMPYoutubeDL
 
 		public string Version { get; private set; }
 
-		public List<YouTubeDLInfo> GetInfo(string url)
+		public IEnumerable<YouTubeDLInfo> GetInfo(string url)
 		{
 			EnsureModuleExists();
 
