@@ -101,6 +101,7 @@ namespace AIMPYoutubeDL
 		{
 			return new YouTubeDLInfo
 			{
+				WebPageUrl = GetKey<string>(info, "webpage_url"),
 				Uploader = GetKey<string>(info, "uploader"),
 				Title = GetKey<string>(info, "title"),
 				Url = GetKey<string>(info, "url"),

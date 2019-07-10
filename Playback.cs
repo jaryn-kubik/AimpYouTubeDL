@@ -86,7 +86,7 @@ namespace AIMPYoutubeDL
 			{
 				var fileInfo = info.Result.Select(x => new AimpFileInfo
 				{
-					FileName = _scheme + url,
+					FileName = _scheme + x.WebPageUrl,
 					Title = x.Title,
 					Duration = x.Duration,
 					Album = x.Uploader,
