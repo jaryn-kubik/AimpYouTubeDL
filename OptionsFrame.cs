@@ -78,7 +78,14 @@ namespace AIMPYoutubeDL
 			{
 				(var prev, var current) = _ytb.Update();
 				_form.Version = current;
-				MessageBox.Show($"Updated from version '{prev}' to '{current}'.\nRestart AIMP to see any effects!");
+				if (prev == current)
+				{
+					MessageBox.Show($"You already have the latest version '{current}'.");
+				}
+				else
+				{
+					MessageBox.Show($"Updated from version '{prev}' to '{current}'.\nRestart AIMP to see any effects!");
+				}
 			});
 		}
 	}

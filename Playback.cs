@@ -1,24 +1,17 @@
-﻿using AIMP.SDK;
-using AIMP.SDK.FileManager;
-using AIMP.SDK.MenuManager;
+﻿using AIMP.SDK.MenuManager;
 using AIMP.SDK.Player;
 using AIMP.SDK.Playlist;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AIMPYoutubeDL
 {
 	public class Playback : IDisposable
 	{
-		private const string _scheme = @"ydl:\\";
+		public const string Scheme = @"ydl:\\";
 		private readonly IAimpPlayer _player;
 		private readonly YouTubeDL _ytb;
-		private readonly CancellationTokenSource _ytbCancel = new CancellationTokenSource();
-		private Task<IEnumerable<YouTubeDLInfo>> _ytbTask;
 
 		public Playback(IAimpPlayer player, YouTubeDL ytb)
 		{
@@ -38,18 +31,30 @@ namespace AIMPYoutubeDL
 		public void Dispose()
 		{
 			_player.PlaybackQueueManager.OnCheckURL -= PlaybackQueueManager_OnCheckURL;
-			_ytbCancel.Cancel();
 		}
 
 		private bool PlaybackQueueManager_OnCheckURL(ref string fullUrl)
 		{
-			if (fullUrl.StartsWith(_scheme))
+			if (!fullUrl.StartsWith(Scheme))
 			{
-				var url = fullUrl.Substring(_scheme.Length);
-				fullUrl = Utils.HandleException(() => _ytb.GetInfo(url).Single().Url);
-				return true;
+				return false;
 			}
-			return false;
+
+			var url = fullUrl.Substring(Scheme.Length);
+			fullUrl = Utils.HandleException(() =>
+			{
+				var info = _ytb.GetInfo(url).Single();
+				var task = new ActionAimpTask(() =>
+				{
+					_player.PlaylistManager.GetActivePlaylist(out var playlist);
+					var item = playlist.GetItem(playlist.PlayingIndex);
+					info.UpdateAimpFileInfo(item.FileInfo);
+					item.FileName = item.FileInfo.FileName;
+				});
+				_player.ServiceSynchronizer.ExecuteInMainThread(task, false);
+				return info.Url;
+			});
+			return true;
 		}
 
 		private void MenuItem_OnExecute(object sender, EventArgs e)
@@ -66,6 +71,9 @@ namespace AIMPYoutubeDL
 
 		private void AddToPlaylist(string url, string newPlaylist)
 		{
+			var info = _ytb.GetInfo(url);
+			var fileInfo = info.Select(x => x.ToAimpFileInfo()).ToList();
+
 			IAimpPlaylist playlist;
 			if (string.IsNullOrWhiteSpace(newPlaylist))
 			{
@@ -75,27 +83,7 @@ namespace AIMPYoutubeDL
 			{
 				_player.PlaylistManager.CreatePlaylist(newPlaylist, true, out playlist);
 			}
-
-			if (_ytbTask?.IsCompleted == false)
-			{
-				throw new InvalidOperationException("Task already running!");
-			}
-
-			_ytbTask = Task.Run(() => _ytb.GetInfo(url), _ytbCancel.Token);
-			_ytbTask.ContinueWith(info => Utils.HandleException(() =>
-			{
-				var fileInfo = info.Result.Select(x => new AimpFileInfo
-				{
-					FileName = _scheme + x.WebPageUrl,
-					Title = x.Title,
-					Duration = x.Duration,
-					Album = x.Uploader,
-					AlbumArt = new System.Drawing.Bitmap(1, 1)
-				}).ToList<IAimpFileInfo>();
-
-				var task = new ActionAimpTask(() => playlist.AddList(fileInfo, PlaylistFlags.FILEINFO, PlaylistFilePosition.CurrentPosition));
-				_player.ServiceSynchronizer.ExecuteInMainThread(task, false);
-			}));
+			playlist.AddList(fileInfo, PlaylistFlags.FILEINFO, PlaylistFilePosition.CurrentPosition);
 		}
 	}
 }

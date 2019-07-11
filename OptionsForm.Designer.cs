@@ -47,7 +47,7 @@
 			this._caption.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this._caption.Location = new System.Drawing.Point(0, 0);
 			this._caption.Name = "_caption";
-			this._caption.Size = new System.Drawing.Size(800, 23);
+			this._caption.Size = new System.Drawing.Size(600, 23);
 			this._caption.TabIndex = 0;
 			this._caption.Text = "YouTube-DL";
 			this._caption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -67,7 +67,7 @@
 			this._optionFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this._optionFormat.Location = new System.Drawing.Point(227, 74);
 			this._optionFormat.Name = "_optionFormat";
-			this._optionFormat.Size = new System.Drawing.Size(545, 22);
+			this._optionFormat.Size = new System.Drawing.Size(345, 22);
 			this._optionFormat.TabIndex = 1;
 			this._optionFormat.TextChanged += new System.EventHandler(this.OnOptionsChanged);
 			// 
@@ -91,7 +91,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 427);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(600, 425);
 			this.tableLayoutPanel1.TabIndex = 2;
 			// 
 			// label1
@@ -140,12 +140,13 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(600, 448);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this._caption);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "OptionsForm";
 			this.Text = "OptionsForm";
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);

@@ -75,6 +75,7 @@ namespace AIMPYoutubeDL
 				var options = new PyDict();
 				options["format"] = _options.Format.ToPython();
 				options["noplaylist"] = true.ToPython();
+				options["extract_flat"] = true.ToPython();
 				options["no_color"] = true.ToPython();
 				options["logger"] = new YouTubeDLLogger().ToPython();
 
@@ -85,37 +86,16 @@ namespace AIMPYoutubeDL
 					{
 						foreach (PyObject item in new PyList(info.GetItem("entries")))
 						{
-							result.Add(GetInfo(new PyDict(item)));
+							result.Add(YouTubeDLInfo.FromResult(new PyDict(item), info));
 						}
 					}
 					else
 					{
-						result.Add(GetInfo(info));
+						result.Add(YouTubeDLInfo.FromResult(info, info));
 					}
 				}
 			}
 			return result;
-		}
-
-		private YouTubeDLInfo GetInfo(PyDict info)
-		{
-			return new YouTubeDLInfo
-			{
-				WebPageUrl = GetKey<string>(info, "webpage_url"),
-				Uploader = GetKey<string>(info, "uploader"),
-				Title = GetKey<string>(info, "title"),
-				Url = GetKey<string>(info, "url"),
-				Duration = GetKey<double>(info, "duration")
-			};
-		}
-
-		private T GetKey<T>(PyDict obj, string key)
-		{
-			if (obj.HasKey(key))
-			{
-				return obj.GetItem(key).As<T>();
-			}
-			return default;
 		}
 
 		public (string prev, string current) Update()

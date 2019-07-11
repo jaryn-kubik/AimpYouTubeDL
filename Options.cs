@@ -11,18 +11,23 @@ namespace AIMPYoutubeDL
 		public Options(IAimpPlayer player)
 		{
 			_player = player;
+			_autoUpdate = GetBool(nameof(AutoUpdate), false);
+			_format = GetString(nameof(Format), "best[ext=mp4]/best");
 		}
+
+		private bool _autoUpdate;
+		private string _format;
 
 		public bool AutoUpdate
 		{
-			get => GetBool(false);
-			set => Set(value);
+			get => _autoUpdate;
+			set => Set(_autoUpdate = value);
 		}
 
 		public string Format
 		{
-			get => GetString("best[ext=mp4]/best");
-			set => Set(value);
+			get => _format;
+			set => Set(_format = value.Trim());
 		}
 
 		private string GetStringInt(string key)
@@ -30,20 +35,20 @@ namespace AIMPYoutubeDL
 			return _player.ServiceConfig.GetValueAsString(_key + key);
 		}
 
-		private string GetString(string def, [CallerMemberName] string key = null)
+		private string GetString(string key, string def)
 		{
 			var str = GetStringInt(key);
-			if (!string.IsNullOrEmpty(str))
+			if (!string.IsNullOrWhiteSpace(str))
 			{
 				return str;
 			}
 			return def;
 		}
 
-		private bool GetBool(bool def, [CallerMemberName] string key = null)
+		private bool GetBool(string key, bool def)
 		{
 			var str = GetStringInt(key);
-			if (!string.IsNullOrEmpty(str) && bool.TryParse(str, out var result))
+			if (!string.IsNullOrWhiteSpace(str) && bool.TryParse(str, out var result))
 			{
 				return result;
 			}
