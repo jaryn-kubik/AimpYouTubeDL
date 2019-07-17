@@ -33,23 +33,36 @@ namespace AIMPYoutubeDL
 			_player.PlaybackQueueManager.OnCheckURL -= PlaybackQueueManager_OnCheckURL;
 		}
 
-		private bool PlaybackQueueManager_OnCheckURL(ref string fullUrl)
+		private bool PlaybackQueueManager_OnCheckURL(ref string resultUrl)
 		{
-			if (!fullUrl.StartsWith(Scheme))
+			if (!resultUrl.StartsWith(Scheme))
 			{
 				return false;
 			}
 
+			var fullUrl = resultUrl;
 			var url = fullUrl.Substring(Scheme.Length);
-			fullUrl = Utils.HandleException(() =>
+
+			resultUrl = Utils.HandleException(() =>
 			{
 				var info = _ytb.GetInfo(url).Single();
 				var task = new ActionAimpTask(() =>
 				{
-					_player.PlaylistManager.GetActivePlaylist(out var playlist);
-					var item = playlist.GetItem(playlist.PlayingIndex);
-					info.UpdateAimpFileInfo(item.FileInfo);
-					item.FileName = item.FileInfo.FileName;
+					var playlistCount = _player.PlaylistManager.GetLoadedPlaylistCount();
+					for (var playlistIndex = 0; playlistIndex < playlistCount; playlistIndex++)
+					{
+						_player.PlaylistManager.GetLoadedPlaylist(playlistIndex, out var playlist);
+						var itemCount = playlist.GetItemCount();
+						for (var itemIndex = 0; itemIndex < itemCount; itemIndex++)
+						{
+							var item = playlist.GetItem(itemIndex);
+							if (item.FileName == fullUrl)
+							{
+								info.UpdateAimpFileInfo(item.FileInfo);
+								item.FileName = item.FileInfo.FileName;
+							}
+						}
+					}
 				});
 				_player.ServiceSynchronizer.ExecuteInMainThread(task, false);
 				return info.Url;
