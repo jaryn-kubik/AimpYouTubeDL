@@ -11,7 +11,6 @@ namespace AIMPYoutubeDL
 
 		public void warning(string msg)
 		{
-			MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 
 		public void error(string msg)
