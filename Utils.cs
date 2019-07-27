@@ -37,7 +37,7 @@ namespace AIMPYoutubeDL
 
 		private static void HandleException(Exception ex)
 		{
-			Trace.WriteLine(ex, "EXCEPTION");
+			Trace.Fail(ex.ToString());
 			MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 

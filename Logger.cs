@@ -34,13 +34,18 @@ namespace AIMPYoutubeDL
 		{
 			_stream?.WriteLine("{0:yyyy-MM-dd HH:mm:ss} [{1,20}] {2}", DateTime.Now, category, message);
 #if DEBUG
-			_stream?.WriteLine(Environment.StackTrace);
+			//_stream?.WriteLine(Environment.StackTrace);
 #endif
 		}
 
 		public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
 		{
 			WriteLine(message, eventType.ToString().ToUpperInvariant());
+		}
+
+		public override void Fail(string message)
+		{
+			WriteLine(message, nameof(TraceEventType.Critical).ToUpperInvariant());
 		}
 	}
 }
