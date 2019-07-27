@@ -74,7 +74,7 @@ namespace AIMPYoutubeDL
 
 		private void OnUpdateYouTubeDL(object sender, EventArgs e)
 		{
-			Utils.HandleException(() =>
+			Utils.TryHandleException(() =>
 			{
 				(var prev, var current) = _ytb.Update();
 				_form.Version = current;

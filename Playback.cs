@@ -43,7 +43,7 @@ namespace AIMPYoutubeDL
 			var fullUrl = resultUrl;
 			var url = fullUrl.Substring(Scheme.Length);
 
-			resultUrl = Utils.HandleException(() =>
+			var success = Utils.TryHandleException(() =>
 			{
 				var info = _ytb.GetInfo(url).Single();
 				var task = new ActionAimpTask(() =>
@@ -66,13 +66,18 @@ namespace AIMPYoutubeDL
 				});
 				_player.ServiceSynchronizer.ExecuteInMainThread(task, false);
 				return info.Url;
-			});
-			return true;
+			}, out var newUrl);
+
+			if (success)
+			{
+				resultUrl = newUrl;
+			}
+			return success;
 		}
 
 		private void MenuItem_OnExecute(object sender, EventArgs e)
 		{
-			Utils.HandleException(() =>
+			Utils.TryHandleException(() =>
 			{
 				var form = new PlaybackAddForm();
 				if (form.ShowDialog() == DialogResult.OK)

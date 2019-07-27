@@ -75,7 +75,7 @@ namespace AIMPYoutubeDL
 				var options = new PyDict();
 				options["format"] = _options.Format.ToPython();
 				options["noplaylist"] = true.ToPython();
-				options["extract_flat"] = true.ToPython();
+				options["extract_flat"] = "in_playlist".ToPython();
 				options["no_color"] = true.ToPython();
 				options["logger"] = new YouTubeDLLogger().ToPython();
 

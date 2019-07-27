@@ -5,33 +5,36 @@ namespace AIMPYoutubeDL
 {
 	public static class Utils
 	{
-		public static void HandleException(Action action)
+		public static bool TryHandleException(Action action)
 		{
 			try
 			{
 				action();
+				return true;
 			}
 			catch (Exception ex)
 			{
 				ShowException(ex);
-				throw;
+				return false;
 			}
 		}
 
-		public static T HandleException<T>(Func<T> func)
+		public static bool TryHandleException<T>(Func<T> func, out T result)
 		{
 			try
 			{
-				return func();
+				result = func();
+				return true;
 			}
 			catch (Exception ex)
 			{
 				ShowException(ex);
-				throw;
+				result = default;
+				return false;
 			}
 		}
 
-		public static void ShowException(Exception ex)
+		private static void ShowException(Exception ex)
 		{
 			MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}

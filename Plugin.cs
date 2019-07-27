@@ -9,7 +9,7 @@ namespace AIMPYoutubeDL
 	public class Plugin : AimpPlugin
 	{
 		public const string PluginName = "YouTube-DL";
-		public const string PluginVersion = "0.3";
+		public const string PluginVersion = "0.4";
 		private const string _name = "aimp_youtubedl";
 
 		private Options _options;
@@ -19,7 +19,7 @@ namespace AIMPYoutubeDL
 
 		public override void Initialize()
 		{
-			Utils.HandleException(() =>
+			Utils.TryHandleException(() =>
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
@@ -38,7 +38,7 @@ namespace AIMPYoutubeDL
 
 		public override void Dispose()
 		{
-			Utils.HandleException(() =>
+			Utils.TryHandleException(() =>
 			{
 				Utils.Dispose(ref _optionsFrame);
 				Utils.Dispose(ref _playback);

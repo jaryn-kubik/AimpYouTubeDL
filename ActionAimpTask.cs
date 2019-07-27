@@ -4,7 +4,6 @@ using System;
 
 namespace AIMPYoutubeDL
 {
-
 	public class ActionAimpTask : IAimpTask
 	{
 		private readonly Action _action;
@@ -16,9 +15,9 @@ namespace AIMPYoutubeDL
 
 		public AimpActionResult Execute(IAimpTaskOwner owner)
 		{
-			if (!owner.IsCanceled)
+			if (!owner.IsCanceled && !Utils.TryHandleException(_action))
 			{
-				Utils.HandleException(_action);
+				return AimpActionResult.Fail;
 			}
 			return AimpActionResult.OK;
 		}
