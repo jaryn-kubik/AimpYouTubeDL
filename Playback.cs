@@ -35,49 +35,44 @@ namespace AIMPYoutubeDL
 
 		private bool PlaybackQueueManager_OnCheckURL(ref string resultUrl)
 		{
-			if (!resultUrl.StartsWith(Scheme))
-			{
-				return false;
-			}
-
-			var fullUrl = resultUrl;
-			var url = fullUrl.Substring(Scheme.Length);
-
-			var success = Utils.TryHandleException(() =>
-			{
-				var info = _ytb.GetInfo(url).Single();
-				var task = new ActionAimpTask(() =>
-				{
-					var playlistCount = _player.PlaylistManager.GetLoadedPlaylistCount();
-					for (var playlistIndex = 0; playlistIndex < playlistCount; playlistIndex++)
-					{
-						_player.PlaylistManager.GetLoadedPlaylist(playlistIndex, out var playlist);
-						var itemCount = playlist.GetItemCount();
-						for (var itemIndex = 0; itemIndex < itemCount; itemIndex++)
-						{
-							var item = playlist.GetItem(itemIndex);
-							if (item.FileName == fullUrl)
-							{
-								info.UpdateAimpFileInfo(item.FileInfo);
-								item.FileName = item.FileInfo.FileName;
-							}
-						}
-					}
-				});
-				_player.ServiceSynchronizer.ExecuteInMainThread(task, false);
-				return info.Url;
-			}, out var newUrl);
-
-			if (success)
+			if (resultUrl.StartsWith(Scheme) && Utils.TryCatch(GetAudioUrl, resultUrl, out var newUrl))
 			{
 				resultUrl = newUrl;
+				return true;
 			}
-			return success;
+			return false;
+		}
+
+		private string GetAudioUrl(string fullUrl)
+		{
+			var url = fullUrl.Substring(Scheme.Length);
+			var info = _ytb.GetInfo(url).Single();
+
+			_player.ServiceSynchronizer.ExecuteInMainThread(new ActionAimpTask(() =>
+			{
+				var playlistCount = _player.PlaylistManager.GetLoadedPlaylistCount();
+				for (var playlistIndex = 0; playlistIndex < playlistCount; playlistIndex++)
+				{
+					_player.PlaylistManager.GetLoadedPlaylist(playlistIndex, out var playlist);
+					var itemCount = playlist.GetItemCount();
+					for (var itemIndex = 0; itemIndex < itemCount; itemIndex++)
+					{
+						var item = playlist.GetItem(itemIndex);
+						if (item.FileName == fullUrl)
+						{
+							info.UpdateAimpFileInfo(item.FileInfo);
+							item.FileName = item.FileInfo.FileName;
+						}
+					}
+				}
+			}), false);
+
+			return info.Url;
 		}
 
 		private void MenuItem_OnExecute(object sender, EventArgs e)
 		{
-			Utils.TryHandleException(() =>
+			Utils.TryCatch(() =>
 			{
 				var form = new PlaybackAddForm();
 				if (form.ShowDialog() == DialogResult.OK)

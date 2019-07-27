@@ -1,5 +1,6 @@
 ﻿using AIMP.SDK;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -9,7 +10,7 @@ namespace AIMPYoutubeDL
 	public class Plugin : AimpPlugin
 	{
 		public const string PluginName = "YouTube-DL";
-		public const string PluginVersion = "0.4";
+		public const string PluginVersion = "0.5";
 		private const string _name = "aimp_youtubedl";
 
 		private Options _options;
@@ -19,13 +20,19 @@ namespace AIMPYoutubeDL
 
 		public override void Initialize()
 		{
-			Utils.TryHandleException(() =>
+			var dirAppData = Path.Combine(Player.Core.GetPath(AimpMessages.AimpCorePathType.AIMP_CORE_PATH_PROFILE), _name);
+			Directory.CreateDirectory(dirAppData);
+
+			Trace.Listeners.Clear();
+			Trace.Listeners.Add(new Logger(dirAppData, _name));
+
+			Utils.TryCatch(() =>
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
 				_options = new Options(Player);
 
-				_ytb = new YouTubeDL(Path.Combine(Player.Core.GetPath(AimpMessages.AimpCorePathType.AIMP_CORE_PATH_PROFILE), _name), _options);
+				_ytb = new YouTubeDL(dirAppData, _options);
 				if (_options.AutoUpdate)
 				{
 					_ytb.Update();
@@ -38,7 +45,7 @@ namespace AIMPYoutubeDL
 
 		public override void Dispose()
 		{
-			Utils.TryHandleException(() =>
+			Utils.TryCatch(() =>
 			{
 				Utils.Dispose(ref _optionsFrame);
 				Utils.Dispose(ref _playback);

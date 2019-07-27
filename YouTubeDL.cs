@@ -26,7 +26,6 @@ namespace AIMPYoutubeDL
 		public YouTubeDL(string dirAppData, Options options)
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-			Directory.CreateDirectory(dirAppData);
 			_file = Path.Combine(dirAppData, _fileName);
 			_options = options;
 

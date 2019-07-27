@@ -8,6 +8,10 @@
 	<OutputPath>C:\Program Files (x86)\AIMP\Plugins\aimp_youtubedl\</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
   <ItemGroup>
 	<PackageReference Include="AimpSDK" Version="4.50.2048" />
 	<PackageReference Include="Python.Runtime.NETStandard" Version="3.7.1" />
