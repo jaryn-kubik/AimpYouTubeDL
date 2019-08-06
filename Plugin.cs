@@ -4,6 +4,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
+[assembly: AssemblyTitle(AIMPYoutubeDL.Plugin.PluginName)]
+[assembly: AssemblyProduct(AIMPYoutubeDL.Plugin.PluginName)]
+[assembly: AssemblyVersion(AIMPYoutubeDL.Plugin.PluginVersion + ".0.0")]
+[assembly: AssemblyFileVersion(AIMPYoutubeDL.Plugin.PluginVersion + ".0.0")]
+
 namespace AIMPYoutubeDL
 {
 	[AimpPlugin(PluginName, "cubis12321", PluginVersion, AimpPluginType = AimpPluginType.Addons, Description = "Support for playing audio from sites supported by youtube-dl")]

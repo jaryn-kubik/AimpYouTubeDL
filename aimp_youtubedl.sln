@@ -3,18 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aimp_youtubedl", "aimp_youtubedl.csproj", "{6C10D63D-E175-4E1C-A759-BA612345F3D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aimp_youtubedl", "aimp_youtubedl.csproj", "{D9AD8C9B-5BCC-4837-912E-F3E3AE8A7F40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6C10D63D-E175-4E1C-A759-BA612345F3D6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6C10D63D-E175-4E1C-A759-BA612345F3D6}.Debug|x86.Build.0 = Debug|Any CPU
-		{6C10D63D-E175-4E1C-A759-BA612345F3D6}.Release|x86.ActiveCfg = Release|Any CPU
-		{6C10D63D-E175-4E1C-A759-BA612345F3D6}.Release|x86.Build.0 = Release|Any CPU
+		{D9AD8C9B-5BCC-4837-912E-F3E3AE8A7F40}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D9AD8C9B-5BCC-4837-912E-F3E3AE8A7F40}.Debug|x86.ActiveCfg = Debug|x86
+		{D9AD8C9B-5BCC-4837-912E-F3E3AE8A7F40}.Debug|x86.Build.0 = Debug|x86
+		{D9AD8C9B-5BCC-4837-912E-F3E3AE8A7F40}.Release|Any CPU.ActiveCfg = Release|x86
+		{D9AD8C9B-5BCC-4837-912E-F3E3AE8A7F40}.Release|x86.ActiveCfg = Release|x86
+		{D9AD8C9B-5BCC-4837-912E-F3E3AE8A7F40}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
