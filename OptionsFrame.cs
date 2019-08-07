@@ -64,6 +64,7 @@ namespace AIMPYoutubeDL
 					_options.Auths = new List<OptionsAuth>(_form.OptionAuths);
 					_options.Auths.Sort((x, y) => x.Extractor.CompareTo(y.Extractor));
 					_options.Save();
+					_ytb.Clear();
 				}
 				if (id == OptionsDialogFrameNotificationType.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_LOAD)
 				{

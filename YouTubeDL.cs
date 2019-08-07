@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 
@@ -19,9 +20,8 @@ namespace AIMPYoutubeDL
 		private readonly Options _options;
 
 		private IntPtr _python;
-		private Lazy<PyObject> _instance = new Lazy<PyObject>(() => Py.Import(_moduleName));
-
-		private dynamic Instance => _instance.Value;
+		private Lazy<PyObject> _module = new Lazy<PyObject>(() => Py.Import(_moduleName));
+		private readonly Dictionary<string, PyObject> _instances = new Dictionary<string, PyObject>();
 
 		public YouTubeDL(string dirAppData, Options options)
 		{
@@ -48,12 +48,13 @@ namespace AIMPYoutubeDL
 
 		public void Dispose()
 		{
+			Clear();
 			using (Py.GIL())
 			{
-				if (_instance?.IsValueCreated == true)
+				if (_module?.IsValueCreated == true)
 				{
-					_instance.Value.Dispose();
-					_instance = null;
+					_module.Value.Dispose();
+					_module = null;
 				}
 			}
 
@@ -64,45 +65,69 @@ namespace AIMPYoutubeDL
 
 		public string Version { get; private set; }
 
+		public void Clear()
+		{
+			using (Py.GIL())
+			{
+				foreach (var instance in _instances.Values)
+				{
+					instance.Dispose();
+				}
+				_instances.Clear();
+			}
+		}
+
 		public IEnumerable<YouTubeDLInfo> GetInfo(string url)
 		{
 			EnsureModuleExists();
 
 			var extractor = GetExtractor(url);
-			var auth = _options.Auths.Find(x => x.Extractor == extractor);
+			var instance = GetInstance(extractor);
 
 			var result = new List<YouTubeDLInfo>();
 			using (Py.GIL())
 			{
-				var options = new PyDict();
-				options["format"] = _options.Format.ToPython();
-				options["noplaylist"] = true.ToPython();
-				options["extract_flat"] = "in_playlist".ToPython();
-				options["no_color"] = true.ToPython();
-				options["logger"] = new YouTubeDLLogger().ToPython();
-				if (auth != null)
+				var info = new PyDict(instance.InvokeMethod("extract_info", url.ToPython(), false.ToPython()));
+				if (info.HasKey("entries"))
 				{
-					options["username"] = ((string)auth.UserName).ToPython();
-					options["password"] = ((string)auth.Password).ToPython();
+					foreach (PyObject item in new PyList(info.GetItem("entries")))
+					{
+						result.Add(YouTubeDLInfo.FromResult(new PyDict(item), info));
+					}
 				}
-
-				using (dynamic ydl = Instance.YoutubeDL(options))
+				else
 				{
-					var info = new PyDict(ydl.extract_info(url, false));
-					if (info.HasKey("entries"))
-					{
-						foreach (PyObject item in new PyList(info.GetItem("entries")))
-						{
-							result.Add(YouTubeDLInfo.FromResult(new PyDict(item), info));
-						}
-					}
-					else
-					{
-						result.Add(YouTubeDLInfo.FromResult(info, info));
-					}
+					result.Add(YouTubeDLInfo.FromResult(info, info));
 				}
 			}
 			return result;
+		}
+
+		private PyObject GetInstance(string extractor)
+		{
+			if (!_instances.TryGetValue(extractor, out var instance))
+			{
+				using (Py.GIL())
+				{
+					var options = new PyDict();
+					options["format"] = _options.Format.ToPython();
+					options["noplaylist"] = true.ToPython();
+					options["extract_flat"] = "in_playlist".ToPython();
+					options["no_color"] = true.ToPython();
+					options["logger"] = new YouTubeDLLogger().ToPython();
+
+					var auth = _options.Auths.Find(x => x.Extractor == extractor);
+					if (auth != null)
+					{
+						options["username"] = ((string)auth.UserName).ToPython();
+						options["password"] = ((string)auth.Password).ToPython();
+					}
+
+					instance = _module.Value.InvokeMethod("YoutubeDL", options);
+					_instances.Add(extractor, instance);
+				}
+			}
+			return instance;
 		}
 
 		private string GetExtractor(string url)
@@ -111,11 +136,12 @@ namespace AIMPYoutubeDL
 
 			using (Py.GIL())
 			{
-				foreach (var extractor in Instance.gen_extractors())
+				foreach (PyObject extractor in _module.Value.InvokeMethod("gen_extractors"))
 				{
-					if (extractor.suitable(url))
+					var suitable = extractor.InvokeMethod("suitable", url.ToPython());
+					if (suitable.As<bool>())
 					{
-						string fullName = extractor.IE_NAME.ToString();
+						var fullName = extractor.GetAttr("IE_NAME").As<string>();
 						return fullName.Split(':')[0];
 					}
 				}
@@ -130,14 +156,17 @@ namespace AIMPYoutubeDL
 			var result = new HashSet<string>();
 			using (Py.GIL())
 			{
-				foreach (var extractor in Instance.gen_extractors())
+				foreach (PyObject extractor in _module.Value.InvokeMethod("gen_extractors"))
 				{
-					string fullName = extractor.IE_NAME.ToString();
-					var name = fullName.Split(':')[0];
-					result.Add(name);
+					if (extractor.HasAttr("_login"))
+					{
+						var fullName = extractor.GetAttr("IE_NAME").As<string>();
+						var name = fullName.Split(':')[0];
+						result.Add(name);
+					}
 				}
 			}
-			return new List<string>(result);
+			return result.OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToList();
 		}
 
 		public (string prev, string current) Update()
