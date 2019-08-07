@@ -1,6 +1,7 @@
 ﻿using AIMP.SDK.Options;
 using AIMP.SDK.Player;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -60,6 +61,8 @@ namespace AIMPYoutubeDL
 				{
 					_options.AutoUpdate = _form.OptionAutoUpdate;
 					_options.Format = _form.OptionFormat;
+					_options.Auths = new List<OptionsAuth>(_form.OptionAuths);
+					_options.Auths.Sort((x, y) => x.Extractor.CompareTo(y.Extractor));
 					_options.Save();
 				}
 				if (id == OptionsDialogFrameNotificationType.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_LOAD)
@@ -67,6 +70,8 @@ namespace AIMPYoutubeDL
 					_form.OptionAutoUpdate = _options.AutoUpdate;
 					_form.OptionFormat = _options.Format;
 					_form.Version = _ytb.Version;
+					_form.OptionAuths = new List<OptionsAuth>(_options.Auths);
+					_form.Extractors = _ytb.GetExtractors();
 				}
 			});
 		}

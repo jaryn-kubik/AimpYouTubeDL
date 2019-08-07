@@ -127,7 +127,7 @@ namespace AIMPYoutubeDL
 		{
 			EnsureModuleExists();
 
-			var result = new List<string>();
+			var result = new HashSet<string>();
 			using (Py.GIL())
 			{
 				foreach (var extractor in Instance.gen_extractors())
@@ -137,7 +137,7 @@ namespace AIMPYoutubeDL
 					result.Add(name);
 				}
 			}
-			return result;
+			return new List<string>(result);
 		}
 
 		public (string prev, string current) Update()
