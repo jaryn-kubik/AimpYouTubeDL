@@ -62,7 +62,7 @@ namespace AIMPYoutubeDL
 	public class OptionsAuth
 	{
 		[XmlElement]
-		public string Host { get; set; }
+		public string Extractor { get; set; }
 
 		[XmlElement]
 		public OptionsProtectedString UserName { get; set; }

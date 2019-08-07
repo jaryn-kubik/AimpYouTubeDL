@@ -68,6 +68,9 @@ namespace AIMPYoutubeDL
 		{
 			EnsureModuleExists();
 
+			var extractor = GetExtractor(url);
+			var auth = _options.Auths.Find(x => x.Extractor == extractor);
+
 			var result = new List<YouTubeDLInfo>();
 			using (Py.GIL())
 			{
@@ -77,6 +80,11 @@ namespace AIMPYoutubeDL
 				options["extract_flat"] = "in_playlist".ToPython();
 				options["no_color"] = true.ToPython();
 				options["logger"] = new YouTubeDLLogger().ToPython();
+				if (auth != null)
+				{
+					options["username"] = ((string)auth.UserName).ToPython();
+					options["password"] = ((string)auth.Password).ToPython();
+				}
 
 				using (dynamic ydl = Instance.YoutubeDL(options))
 				{
@@ -92,6 +100,41 @@ namespace AIMPYoutubeDL
 					{
 						result.Add(YouTubeDLInfo.FromResult(info, info));
 					}
+				}
+			}
+			return result;
+		}
+
+		private string GetExtractor(string url)
+		{
+			EnsureModuleExists();
+
+			using (Py.GIL())
+			{
+				foreach (var extractor in Instance.gen_extractors())
+				{
+					if (extractor.suitable(url))
+					{
+						string fullName = extractor.IE_NAME.ToString();
+						return fullName.Split(':')[0];
+					}
+				}
+			}
+			return null;
+		}
+
+		public IEnumerable<string> GetExtractors()
+		{
+			EnsureModuleExists();
+
+			var result = new List<string>();
+			using (Py.GIL())
+			{
+				foreach (var extractor in Instance.gen_extractors())
+				{
+					string fullName = extractor.IE_NAME.ToString();
+					var name = fullName.Split(':')[0];
+					result.Add(name);
 				}
 			}
 			return result;

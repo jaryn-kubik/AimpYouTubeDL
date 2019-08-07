@@ -34,7 +34,8 @@ namespace AIMPYoutubeDL
 
 		public static YouTubeDLInfo FromResult(PyDict item, PyDict parent)
 		{
-			var extractor = GetKey<string>(parent ?? item, "extractor_key");
+			var extractor = GetKey<string>(parent ?? item, "extractor");
+			extractor = extractor.Split(':')[0];
 
 			var webpageUrl = GetKey<string>(item, "webpage_url") ?? GetKey<string>(item, "url");
 			var url = GetKey<string>(item, "url");
@@ -68,7 +69,7 @@ namespace AIMPYoutubeDL
 			return default;
 		}
 
-		private const string _extractorYoutube = "Youtube";
-		private const string _extractorSoundcloud = "Soundcloud";
+		private const string _extractorYoutube = "youtube";
+		private const string _extractorSoundcloud = "soundcloud";
 	}
 }
