@@ -35,7 +35,7 @@ namespace AIMPYoutubeDL
 			{
 				AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
-				_options = new Options(dirAppData, _name);
+				_options = Options.Load(dirAppData, _name);
 
 				_ytb = new YouTubeDL(dirAppData, _options);
 				if (_options.AutoUpdate)

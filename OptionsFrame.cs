@@ -54,17 +54,21 @@ namespace AIMPYoutubeDL
 
 		public void Notification(OptionsDialogFrameNotificationType id)
 		{
-			if (id == OptionsDialogFrameNotificationType.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_SAVE)
+			Utils.TryCatch(() =>
 			{
-				_options.AutoUpdate = _form.OptionAutoUpdate;
-				_options.Format = _form.OptionFormat;
-			}
-			if (id == OptionsDialogFrameNotificationType.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_LOAD)
-			{
-				_form.OptionAutoUpdate = _options.AutoUpdate;
-				_form.OptionFormat = _options.Format;
-				_form.Version = _ytb.Version;
-			}
+				if (id == OptionsDialogFrameNotificationType.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_SAVE)
+				{
+					_options.AutoUpdate = _form.OptionAutoUpdate;
+					_options.Format = _form.OptionFormat;
+					_options.Save();
+				}
+				if (id == OptionsDialogFrameNotificationType.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_LOAD)
+				{
+					_form.OptionAutoUpdate = _options.AutoUpdate;
+					_form.OptionFormat = _options.Format;
+					_form.Version = _ytb.Version;
+				}
+			});
 		}
 
 		private void OnOptionsChanged(object sender, EventArgs e)

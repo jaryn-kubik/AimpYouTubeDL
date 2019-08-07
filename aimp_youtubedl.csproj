@@ -54,6 +54,7 @@
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OptionsFrame.cs" />
+    <Compile Include="OptionsProtectedString.cs" />
     <Compile Include="Playback.cs" />
     <Compile Include="PlaybackAddForm.cs">
       <SubType>Form</SubType>
