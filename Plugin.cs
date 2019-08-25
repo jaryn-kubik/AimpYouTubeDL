@@ -1,4 +1,5 @@
 ﻿using AIMP.SDK;
+using AIMP.SDK.MenuManager;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -31,10 +32,20 @@ namespace AIMPYoutubeDL
 			Trace.Listeners.Clear();
 			Trace.Listeners.Add(new Logger(dirAppData, _name));
 
+			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+			try
+			{
+				Player.MenuManager.GetBuiltIn(ParentMenuType.AIMP_MENUID_PLAYER_PLAYLIST_ADDING, out _);
+			}
+			catch (NullReferenceException ex)
+			{
+				Trace.Fail("MenuManager not available.");
+				Trace.Fail(ex.ToString());
+				return;
+			}
+
 			Utils.TryCatch(() =>
 			{
-				AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-
 				_options = Options.Load(dirAppData, _name);
 
 				_ytb = new YouTubeDL(dirAppData, _options);
