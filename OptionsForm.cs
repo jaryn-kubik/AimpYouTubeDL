@@ -8,7 +8,7 @@ namespace AIMPYoutubeDL
 {
 	public partial class OptionsForm : Form
 	{
-		public OptionsForm()
+		public OptionsForm(OptionsFormMode mode)
 		{
 			InitializeComponent();
 

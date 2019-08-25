@@ -15,7 +15,7 @@ namespace AIMPYoutubeDL
 		private Options(string path) { _path = path; }
 
 		[XmlElement]
-		public bool AutoUpdate { get; set; }
+		public bool AutoUpdate { get; set; } = true;
 
 		[XmlElement]
 		public string Format { get; set; } = "best[ext=mp4]/best";

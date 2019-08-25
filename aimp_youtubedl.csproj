@@ -53,6 +53,7 @@
     <Compile Include="OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OptionsFormMode.cs" />
     <Compile Include="OptionsFrame.cs" />
     <Compile Include="OptionsProtectedString.cs" />
     <Compile Include="Playback.cs" />

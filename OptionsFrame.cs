@@ -38,7 +38,7 @@ namespace AIMPYoutubeDL
 
 		public IntPtr CreateFrame(IntPtr parentWindow)
 		{
-			_form = new OptionsForm();
+			_form = new OptionsForm(GetOptionsFormMode());
 			_form.OptionsChanged += OnOptionsChanged;
 			_form.UpdateYouTubeDL += OnUpdateYouTubeDL;
 
@@ -75,6 +75,20 @@ namespace AIMPYoutubeDL
 					_form.Extractors = _ytb.GetExtractors();
 				}
 			});
+		}
+
+		private OptionsFormMode GetOptionsFormMode()
+		{
+			try
+			{
+				var mode = _player.ServiceConfig.GetValueAsInt32("System\\NightMode");
+				if (mode == 2 || (mode == 0 && Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1")?.ToString() == "0"))
+				{
+					return OptionsFormMode.Dark;
+				}
+			}
+			catch { }
+			return OptionsFormMode.Light;
 		}
 
 		private void OnOptionsChanged(object sender, EventArgs e)
