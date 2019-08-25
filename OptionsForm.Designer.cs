@@ -59,7 +59,7 @@
 			this._caption.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this._caption.Location = new System.Drawing.Point(0, 0);
 			this._caption.Name = "_caption";
-			this._caption.Size = new System.Drawing.Size(600, 26);
+			this._caption.Size = new System.Drawing.Size(500, 23);
 			this._caption.TabIndex = 0;
 			this._caption.Text = "YouTube-DL";
 			this._caption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -68,20 +68,19 @@
 			// 
 			this._optionAutoUpdate.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this._optionAutoUpdate.AutoSize = true;
-			this._optionAutoUpdate.Location = new System.Drawing.Point(237, 23);
+			this._optionAutoUpdate.Location = new System.Drawing.Point(216, 10);
 			this._optionAutoUpdate.Name = "_optionAutoUpdate";
 			this._optionAutoUpdate.Size = new System.Drawing.Size(18, 17);
 			this._optionAutoUpdate.TabIndex = 0;
-			this._optionAutoUpdate.UseVisualStyleBackColor = false;
 			this._optionAutoUpdate.CheckedChanged += new System.EventHandler(this.OnOptionsChanged);
 			// 
 			// _optionFormat
 			// 
 			this._optionFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this._optionFormat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this._optionFormat.Location = new System.Drawing.Point(237, 60);
+			this._optionFormat.Location = new System.Drawing.Point(216, 44);
 			this._optionFormat.Name = "_optionFormat";
-			this._optionFormat.Size = new System.Drawing.Size(338, 25);
+			this._optionFormat.Size = new System.Drawing.Size(281, 22);
 			this._optionFormat.TabIndex = 1;
 			this._optionFormat.TextChanged += new System.EventHandler(this.OnOptionsChanged);
 			// 
@@ -99,45 +98,44 @@
 			this.tableLayoutPanel1.Controls.Add(this._version, 0, 2);
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 3);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 26);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 23);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(22, 11, 22, 11);
 			this.tableLayoutPanel1.RowCount = 5;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 319F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(600, 610);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(500, 477);
 			this.tableLayoutPanel1.TabIndex = 2;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(31, 145);
-			this.label3.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
+			this.label3.Location = new System.Drawing.Point(10, 121);
+			this.label3.Margin = new System.Windows.Forms.Padding(10);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(169, 19);
+			this.label3.Size = new System.Drawing.Size(168, 17);
 			this.label3.TabIndex = 8;
 			this.label3.Text = "youtube-dl authentication";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(31, 22);
-			this.label1.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
+			this.label1.Location = new System.Drawing.Point(10, 10);
+			this.label1.Margin = new System.Windows.Forms.Padding(10);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(194, 19);
+			this.label1.Size = new System.Drawing.Size(193, 17);
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Update youtube-dl on startup";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(31, 63);
-			this.label2.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
+			this.label2.Location = new System.Drawing.Point(10, 47);
+			this.label2.Margin = new System.Windows.Forms.Padding(10);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(134, 19);
+			this.label2.Size = new System.Drawing.Size(129, 17);
 			this.label2.TabIndex = 4;
 			this.label2.Text = "youtube-dl --format";
 			// 
@@ -147,9 +145,9 @@
 			this._update.AutoSize = true;
 			this._update.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
 			this._update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this._update.Location = new System.Drawing.Point(237, 98);
+			this._update.Location = new System.Drawing.Point(216, 78);
 			this._update.Name = "_update";
-			this._update.Size = new System.Drawing.Size(66, 31);
+			this._update.Size = new System.Drawing.Size(75, 29);
 			this._update.TabIndex = 5;
 			this._update.Text = "Update";
 			this._update.UseVisualStyleBackColor = true;
@@ -158,10 +156,10 @@
 			// _version
 			// 
 			this._version.AutoSize = true;
-			this._version.Location = new System.Drawing.Point(31, 104);
-			this._version.Margin = new System.Windows.Forms.Padding(9, 11, 9, 11);
+			this._version.Location = new System.Drawing.Point(10, 84);
+			this._version.Margin = new System.Windows.Forms.Padding(10);
 			this._version.Name = "_version";
-			this._version.Size = new System.Drawing.Size(77, 19);
+			this._version.Size = new System.Drawing.Size(75, 17);
 			this._version.TabIndex = 7;
 			this._version.Text = "youtube-dl";
 			// 
@@ -180,7 +178,7 @@
 			this.tableLayoutPanel2.Controls.Add(this._authUserName, 1, 3);
 			this.tableLayoutPanel2.Controls.Add(this._authPassword, 1, 4);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(237, 137);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(216, 114);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 5;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -188,8 +186,8 @@
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(338, 313);
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(281, 294);
 			this.tableLayoutPanel2.TabIndex = 9;
 			// 
 			// _authList
@@ -197,11 +195,11 @@
 			this._authList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this._authList.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._authList.FormattingEnabled = true;
-			this._authList.ItemHeight = 17;
-			this._authList.Location = new System.Drawing.Point(84, 3);
+			this._authList.ItemHeight = 16;
+			this._authList.Location = new System.Drawing.Point(88, 3);
 			this._authList.Name = "_authList";
 			this.tableLayoutPanel2.SetRowSpan(this._authList, 2);
-			this._authList.Size = new System.Drawing.Size(251, 208);
+			this._authList.Size = new System.Drawing.Size(190, 195);
 			this._authList.TabIndex = 0;
 			// 
 			// _authRemove
@@ -210,9 +208,9 @@
 			this._authRemove.AutoSize = true;
 			this._authRemove.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
 			this._authRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this._authRemove.Location = new System.Drawing.Point(4, 143);
+			this._authRemove.Location = new System.Drawing.Point(5, 134);
 			this._authRemove.Name = "_authRemove";
-			this._authRemove.Size = new System.Drawing.Size(72, 31);
+			this._authRemove.Size = new System.Drawing.Size(75, 29);
 			this._authRemove.TabIndex = 1;
 			this._authRemove.Text = "Remove";
 			this._authRemove.UseVisualStyleBackColor = true;
@@ -224,9 +222,9 @@
 			this._authAdd.AutoSize = true;
 			this._authAdd.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
 			this._authAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this._authAdd.Location = new System.Drawing.Point(7, 180);
+			this._authAdd.Location = new System.Drawing.Point(5, 169);
 			this._authAdd.Name = "_authAdd";
-			this._authAdd.Size = new System.Drawing.Size(66, 31);
+			this._authAdd.Size = new System.Drawing.Size(75, 29);
 			this._authAdd.TabIndex = 2;
 			this._authAdd.Text = "Add";
 			this._authAdd.UseVisualStyleBackColor = true;
@@ -235,10 +233,10 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(6, 221);
-			this.label4.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+			this.label4.Location = new System.Drawing.Point(7, 208);
+			this.label4.Margin = new System.Windows.Forms.Padding(7);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(63, 19);
+			this.label4.Size = new System.Drawing.Size(63, 17);
 			this.label4.TabIndex = 8;
 			this.label4.Text = "extractor";
 			// 
@@ -246,10 +244,10 @@
 			// 
 			this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(6, 254);
-			this.label5.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+			this.label5.Location = new System.Drawing.Point(7, 239);
+			this.label5.Margin = new System.Windows.Forms.Padding(7);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(69, 19);
+			this.label5.Size = new System.Drawing.Size(71, 17);
 			this.label5.TabIndex = 9;
 			this.label5.Text = "username";
 			// 
@@ -257,49 +255,49 @@
 			// 
 			this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 287);
-			this.label6.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+			this.label6.Location = new System.Drawing.Point(7, 270);
+			this.label6.Margin = new System.Windows.Forms.Padding(7);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(67, 19);
+			this.label6.Size = new System.Drawing.Size(68, 17);
 			this.label6.TabIndex = 10;
 			this.label6.Text = "password";
 			// 
 			// _authExtractor
 			// 
 			this._authExtractor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this._authExtractor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this._authExtractor.FormattingEnabled = true;
-			this._authExtractor.Location = new System.Drawing.Point(84, 218);
+			this._authExtractor.Location = new System.Drawing.Point(88, 204);
 			this._authExtractor.Name = "_authExtractor";
-			this._authExtractor.Size = new System.Drawing.Size(251, 25);
+			this._authExtractor.Size = new System.Drawing.Size(190, 24);
 			this._authExtractor.TabIndex = 3;
 			// 
 			// _authUserName
 			// 
 			this._authUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this._authUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this._authUserName.Location = new System.Drawing.Point(84, 251);
+			this._authUserName.Location = new System.Drawing.Point(88, 236);
 			this._authUserName.Name = "_authUserName";
-			this._authUserName.Size = new System.Drawing.Size(251, 25);
+			this._authUserName.Size = new System.Drawing.Size(190, 22);
 			this._authUserName.TabIndex = 4;
 			// 
 			// _authPassword
 			// 
 			this._authPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this._authPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this._authPassword.Location = new System.Drawing.Point(84, 284);
+			this._authPassword.Location = new System.Drawing.Point(88, 267);
 			this._authPassword.Name = "_authPassword";
-			this._authPassword.Size = new System.Drawing.Size(251, 25);
+			this._authPassword.Size = new System.Drawing.Size(190, 22);
 			this._authPassword.TabIndex = 5;
 			this._authPassword.UseSystemPasswordChar = true;
 			// 
 			// OptionsForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(600, 636);
+			this.ClientSize = new System.Drawing.Size(500, 500);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this._caption);
-			this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "OptionsForm";
 			this.Text = "OptionsForm";
