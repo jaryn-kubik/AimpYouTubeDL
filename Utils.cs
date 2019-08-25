@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AIMP.SDK.Player;
+using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -46,6 +47,20 @@ namespace AIMPYoutubeDL
 		{
 			obj?.Dispose();
 			obj = null;
+		}
+
+		public static VisualStyle GetVisualStyle(IAimpPlayer player)
+		{
+			try
+			{
+				var mode = player.ServiceConfig.GetValueAsInt32("System\\NightMode");
+				if (mode == 2 || (mode == 0 && Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1")?.ToString() == "0"))
+				{
+					return VisualStyle.Dark;
+				}
+			}
+			catch { }
+			return VisualStyle.Light;
 		}
 	}
 }

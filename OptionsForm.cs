@@ -9,11 +9,11 @@ namespace AIMPYoutubeDL
 {
 	public partial class OptionsForm : Form
 	{
-		public OptionsForm(OptionsFormMode mode)
+		public OptionsForm(VisualStyle style)
 		{
 			InitializeComponent();
 
-			if (mode == OptionsFormMode.Dark)
+			if (style == VisualStyle.Dark)
 			{
 				BackColor = Color.FromArgb(38, 38, 38);
 				ForeColor = Color.WhiteSmoke;

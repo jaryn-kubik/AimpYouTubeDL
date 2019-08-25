@@ -74,7 +74,7 @@ namespace AIMPYoutubeDL
 		{
 			Utils.TryCatch(() =>
 			{
-				var form = new PlaybackAddForm();
+				var form = new PlaybackAddForm(Utils.GetVisualStyle(_player));
 				if (form.ShowDialog() == DialogResult.OK)
 				{
 					AddToPlaylist(form.Url, form.Playlist);
