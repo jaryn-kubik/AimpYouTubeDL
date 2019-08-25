@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,6 +12,17 @@ namespace AIMPYoutubeDL
 		public OptionsForm(OptionsFormMode mode)
 		{
 			InitializeComponent();
+
+			if (mode == OptionsFormMode.Dark)
+			{
+				BackColor = Color.FromArgb(38, 38, 38);
+				ForeColor = Color.WhiteSmoke;
+				_caption.BackColor = Color.FromArgb(74, 74, 74);
+				_optionFormat.BackColor = _authList.BackColor = _authExtractor.BackColor = _authUserName.BackColor = _authPassword.BackColor = Color.FromArgb(42, 42, 42);
+				_optionFormat.ForeColor = _authList.ForeColor = _authExtractor.ForeColor = _authUserName.ForeColor = _authPassword.ForeColor = Color.WhiteSmoke;
+				_update.BackColor = _authRemove.BackColor = _authAdd.BackColor = Color.FromArgb(56, 56, 56);
+				_update.FlatAppearance.BorderColor = _authRemove.FlatAppearance.BorderColor = _authAdd.FlatAppearance.BorderColor = Color.FromArgb(100, 100, 100);
+			}
 
 			_caption.Text = $"{Plugin.PluginName} v{Plugin.PluginVersion}";
 			_authList.DisplayMember = nameof(OptionsAuth.Extractor);
