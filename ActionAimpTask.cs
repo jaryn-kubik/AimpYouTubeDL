@@ -15,11 +15,7 @@ namespace AIMPYoutubeDL
 
 		public AimpActionResult Execute(IAimpTaskOwner owner)
 		{
-			if (!owner.IsCanceled && !Utils.TryCatch(_action))
-			{
-				return AimpActionResult.Fail;
-			}
-			return AimpActionResult.OK;
+			return Utils.TryCatch(_action) ? AimpActionResult.OK : AimpActionResult.Fail;
 		}
 	}
 }

@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AimpSDK">
-      <Version>4.50.2048</Version>
+      <Version>4.60.2144.1</Version>
     </PackageReference>
     <PackageReference Include="Python.Runtime.NETStandard">
       <Version>3.7.1</Version>
