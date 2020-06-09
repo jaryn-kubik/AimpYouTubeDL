@@ -12,12 +12,14 @@ namespace AIMPYoutubeDL
 	{
 		private const string _moduleName = "youtube_dl";
 		private const string _fileName = "youtube-dl";
+		private const string _cookieFileName = "cookies.txt";
 		private const string _updateUrl = "https://yt-dl.org/latest/youtube-dl";
 		private const string _updateLatest = "https://yt-dl.org/update/LATEST_VERSION";
 		private const string _versionInvalid = "INVALID";
 
 		private readonly string _file;
 		private readonly Options _options;
+		private readonly string _cookieFile;
 
 		private IntPtr _python;
 		private Lazy<PyObject> _module = new Lazy<PyObject>(() => Py.Import(_moduleName));
@@ -27,6 +29,7 @@ namespace AIMPYoutubeDL
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			_file = Path.Combine(dirAppData, _fileName);
+			_cookieFile = Path.Combine(dirAppData, _cookieFileName);
 			_options = options;
 
 			var dirPlugin = Path.GetDirectoryName(typeof(YouTubeDL).Assembly.Location);
@@ -115,6 +118,7 @@ namespace AIMPYoutubeDL
 					options["extract_flat"] = "in_playlist".ToPython();
 					options["no_color"] = true.ToPython();
 					options["logger"] = new YouTubeDLLogger().ToPython();
+					options["cookiefile"] = _cookieFile.ToPython();
 
 					var auth = _options.Auths.Find(x => x.Extractor == extractor);
 					if (auth != null)
