@@ -17,7 +17,7 @@ namespace AIMPYoutubeDL
 	public class Plugin : AimpPlugin
 	{
 		public const string PluginName = "YouTube-DL";
-		public const string PluginVersion = "1.0.2";
+		public const string PluginVersion = "1.0.3";
 		private const string _name = "aimp_youtubedl";
 
 		private Options _options;
@@ -76,7 +76,8 @@ namespace AIMPYoutubeDL
 		{
 			if (args.Name.StartsWith("aimp_dotnet"))
 			{
-				return Assembly.LoadFrom($"{_name}\\{_name}.dll");
+				var dirPlugin = Path.GetDirectoryName(typeof(Plugin).Assembly.Location);
+				return Assembly.LoadFrom(Path.Combine(dirPlugin, _name + ".dll"));
 			}
 			return null;
 		}
