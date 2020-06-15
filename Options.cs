@@ -18,7 +18,7 @@ namespace AIMPYoutubeDL
 		public bool AutoUpdate { get; set; } = true;
 
 		[XmlElement]
-		public string Format { get; set; } = "best[ext=mp4]/best";
+		public string Format { get; set; } = "bestaudio[protocol=m3u8_native]/best[ext=mp4]/best";
 
 		[XmlArray, XmlArrayItem("Auth")]
 		public List<OptionsAuth> Auths { get; set; } = new List<OptionsAuth>();

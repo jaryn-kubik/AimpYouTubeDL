@@ -17,7 +17,7 @@ namespace AIMPYoutubeDL
 	public class Plugin : AimpPlugin
 	{
 		public const string PluginName = "YouTube-DL";
-		public const string PluginVersion = "1.0.3";
+		public const string PluginVersion = "1.0.4";
 		private const string _name = "aimp_youtubedl";
 
 		private Options _options;

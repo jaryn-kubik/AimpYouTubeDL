@@ -119,6 +119,7 @@ namespace AIMPYoutubeDL
 					options["no_color"] = true.ToPython();
 					options["logger"] = new YouTubeDLLogger().ToPython();
 					options["cookiefile"] = _cookieFile.ToPython();
+					options["nocheckcertificate"] = true.ToPython();
 
 					var auth = _options.Auths.Find(x => x.Extractor == extractor);
 					if (auth != null)
