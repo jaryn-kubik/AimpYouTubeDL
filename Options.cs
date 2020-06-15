@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
@@ -9,16 +10,22 @@ namespace AIMPYoutubeDL
 {
 	public sealed class Options
 	{
+		private const string _formatDefault = "bestaudio[protocol=m3u8_native]/bestaudio[protocol=m3u8]/best[ext=mp4]/best";
 		private string _path;
+		private string _format = _formatDefault;
 
 		private Options() { }
 		private Options(string path) { _path = path; }
 
-		[XmlElement]
+		[XmlElement, DefaultValue(true)]
 		public bool AutoUpdate { get; set; } = true;
 
-		[XmlElement]
-		public string Format { get; set; } = "bestaudio[protocol=m3u8_native]/best[ext=mp4]/best";
+		[XmlElement, DefaultValue(_formatDefault)]
+		public string Format
+		{
+			get => _format;
+			set => _format = string.IsNullOrWhiteSpace(value) ? _formatDefault : value;
+		}
 
 		[XmlArray, XmlArrayItem("Auth")]
 		public List<OptionsAuth> Auths { get; set; } = new List<OptionsAuth>();

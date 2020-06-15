@@ -39,7 +39,7 @@ namespace AIMPYoutubeDL
 
 			var webpageUrl = GetKey<string>(item, "webpage_url") ?? GetKey<string>(item, "url");
 			var url = GetKey<string>(item, "url");
-			var duration = GetKey<double>(item, "duration");
+			var duration = GetKey<double?>(item, "duration");
 
 			var title = GetKey<string>(item, "title");
 			var uploader = GetKey<string>(item, "uploader");
@@ -53,7 +53,7 @@ namespace AIMPYoutubeDL
 			{
 				WebpageUrl = webpageUrl,
 				Url = url,
-				Duration = duration,
+				Duration = duration ?? 0,
 
 				Title = title ?? url,
 				Album = uploader
