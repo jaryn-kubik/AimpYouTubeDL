@@ -1,4 +1,5 @@
 ﻿using AimpSharp;
+using AimpSharp.Actions;
 using AimpSharp.Core;
 using AimpSharp.Menu;
 using AimpSharp.Objects;
@@ -51,6 +52,9 @@ namespace aimp_test
 
 			var menuItemParent = ((IAIMPServiceMenuManager)Core).GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING);
 			menuItem.SetValueAsObject(MenuItemPropId.AIMP_MENUITEM_PROPID_PARENT, menuItemParent);
+
+			var onClick = new ActionEvent(() => MessageBox.Show("OnClick"));
+			menuItem.SetValueAsObject(MenuItemPropId.AIMP_MENUITEM_PROPID_EVENT, onClick);
 
 			Core.RegisterExtension(AimpSharp.Menu.IID.IAIMPServiceMenuManager, menuItem);
 			return true;
