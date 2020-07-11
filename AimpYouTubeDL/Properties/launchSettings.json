@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "AimpYouTubeDL": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files (x86)\\AIMP\\AIMP.exe",
+      "commandLineArgs": "/debug"
+    }
+  }
+}
