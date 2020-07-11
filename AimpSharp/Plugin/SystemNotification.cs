@@ -1,0 +1,9 @@
+﻿namespace AimpSharp.Plugin
+{
+	public enum SystemNotification
+	{
+		AIMP_SYSTEM_NOTIFICATION_SERVICE_ADDED = 0x1,
+		AIMP_SYSTEM_NOTIFICATION_SERVICE_REMOVED = 0x2,
+		AIMP_SYSTEM_NOTIFICATION_EXTENSION_REMOVED = 0x3
+	}
+}

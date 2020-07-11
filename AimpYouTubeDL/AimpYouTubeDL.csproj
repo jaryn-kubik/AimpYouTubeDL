@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
-		<PlatformTarget>x86</PlatformTarget>
-		<LangVersion>latest</LangVersion>
-		<AssemblyName>aimp_test</AssemblyName>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<OutputPath>C:\Program Files (x86)\AIMP\Plugins\aimp_test</OutputPath>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="NXPorts" Version="1.0.0" />
-		<ProjectReference Include="..\AimpSharp\AimpSharp.csproj" />
-	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>aimp_test</AssemblyName>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>C:\Program Files (x86)\AIMP\Plugins\aimp_test</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NXPorts" Version="1.0.0" />
+    <ProjectReference Include="..\AimpSharp\AimpSharp.csproj" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
 </Project>
