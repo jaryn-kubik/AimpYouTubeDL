@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Threading
 {
 	[ComImport]
-	[Guid(IID.IAIMPTaskPriority_IID)]
+	[Guid("41494D50-5461-736B-5072-696F72697479")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPTaskPriority
 	{

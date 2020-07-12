@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Objects
 {
 	[ComImport]
-	[Guid(IID.IAIMPPropertyList2_IID)]
+	[Guid("41494D50-5072-6F70-4C69-737432000000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPropertyList2 : IAIMPPropertyList
 	{

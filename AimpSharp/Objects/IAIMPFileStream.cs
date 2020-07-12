@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Objects
 {
 	[ComImport]
-	[Guid(IID.IAIMPFileStream_IID)]
+	[Guid("41494D50-4669-6C65-5374-7265616D0000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPFileStream : IAIMPStream
 	{

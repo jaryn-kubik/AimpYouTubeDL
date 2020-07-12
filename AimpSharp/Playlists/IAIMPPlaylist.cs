@@ -12,7 +12,7 @@ namespace AimpSharp.Playlists
 	public delegate bool TAIMPPlaylistDeleteProc(IAIMPPlaylistItem Item, IntPtr UserData);
 
 	[ComImport]
-	[Guid(IID.IAIMPPlaylist_IID)]
+	[Guid("41494D50-506C-7300-0000-000000000000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPlaylist
 	{

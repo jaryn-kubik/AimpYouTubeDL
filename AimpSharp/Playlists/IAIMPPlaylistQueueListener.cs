@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Playlists
 {
 	[ComImport]
-	[Guid(IID.IAIMPPlaylistQueueListener_IID)]
+	[Guid("41494D50-506C-7351-7565-75654C737400")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPlaylistQueueListener
 	{

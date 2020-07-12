@@ -3,7 +3,7 @@
 namespace AimpSharp.Objects
 {
 	[ComImport]
-	[Guid(IID.IAIMPHashCode_IID)]
+	[Guid("41494D50-4861-7368-436F-646500000000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPHashCode
 	{

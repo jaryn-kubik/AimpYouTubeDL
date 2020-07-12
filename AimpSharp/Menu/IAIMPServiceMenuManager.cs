@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Menu
 {
 	[ComImport]
-	[Guid(IID.IAIMPServiceMenuManager_IID)]
+	[Guid("41494D50-5372-764D-656E-754D6E677200")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPServiceMenuManager
 	{

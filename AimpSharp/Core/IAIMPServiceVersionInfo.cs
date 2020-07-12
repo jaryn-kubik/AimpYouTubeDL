@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Core
 {
 	[ComImport]
-	[Guid(IID.IAIMPServiceVersionInfo_IID)]
+	[Guid("41494D50-5372-7656-6572-496E666F0000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPServiceVersionInfo
 	{

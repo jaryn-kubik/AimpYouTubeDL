@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Actions
 {
 	[ComImport]
-	[Guid(IID.IAIMPServiceActionManager_IID)]
+	[Guid("41494D50-5372-7641-6374-696F6E4D616E")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPServiceActionManager
 	{

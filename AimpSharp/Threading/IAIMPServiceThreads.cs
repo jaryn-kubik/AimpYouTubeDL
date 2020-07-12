@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Threading
 {
 	[ComImport]
-	[Guid(IID.IAIMPServiceThreads_IID)]
+	[Guid("41494D50-5372-7654-6872-656164730000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPServiceThreads
 	{

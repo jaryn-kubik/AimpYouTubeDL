@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Core
 {
 	[ComImport]
-	[Guid(IID.IAIMPServiceShutdown_IID)]
+	[Guid("41494D50-5372-7653-6875-74646F776E00")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPServiceShutdown
 	{

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Playlists
 {
 	[ComImport]
-	[Guid(IID.IAIMPPlaylistPreimageFolders_IID)]
+	[Guid("41494D50-536D-504C-5372-63466C647273")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPlaylistPreimageFolders : IAIMPPlaylistPreimage
 	{

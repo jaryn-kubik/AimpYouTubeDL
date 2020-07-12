@@ -3,7 +3,7 @@
 namespace AimpSharp.Playlists
 {
 	[ComImport]
-	[Guid(IID.IAIMPPlaylistListener2_IID)]
+	[Guid("41494D50-506C-734C-7374-6E7232000000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPlaylistListener2
 	{

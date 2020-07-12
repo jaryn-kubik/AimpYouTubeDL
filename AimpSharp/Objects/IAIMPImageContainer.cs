@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Objects
 {
 	[ComImport]
-	[Guid(IID.IAIMPImageContainer_IID)]
+	[Guid("41494D50-496D-6167-6543-6F6E746E7200")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPImageContainer
 	{

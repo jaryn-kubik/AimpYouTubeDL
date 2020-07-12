@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace AimpSharp.Playlists
 {
 	[ComImport]
-	[Guid(IID.IAIMPPlaylistPreimageDataProvider_IID)]
+	[Guid("41494D50-536D-506C-7344-617461507276")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPlaylistPreimageDataProvider
 	{

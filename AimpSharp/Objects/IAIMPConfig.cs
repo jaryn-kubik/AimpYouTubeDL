@@ -3,7 +3,7 @@
 namespace AimpSharp.Objects
 {
 	[ComImport]
-	[Guid(IID.IAIMPConfig_IID)]
+	[Guid("41494D50-436F-6E66-6967-000000000000")]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPConfig
 	{
