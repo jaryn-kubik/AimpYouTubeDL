@@ -5,8 +5,6 @@ using System.Runtime.InteropServices;
 
 namespace AimpSharp.Plugin
 {
-	[ComImport]
-	[Guid(IID.IAIMPPlugin_IID)]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPlugin
 	{

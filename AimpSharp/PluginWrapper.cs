@@ -63,10 +63,14 @@ namespace AimpSharp
 
 		public HRESULT Finalize()
 		{
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
+			Marshal.ReleaseComObject(Core);
+			Core = null;
+			for (var i = 0; i <= GC.MaxGeneration; i++)
+			{
+				GC.WaitForPendingFinalizers();
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+			}
 			return HRESULT.S_OK;
 		}
 
