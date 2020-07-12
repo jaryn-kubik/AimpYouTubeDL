@@ -1,8 +1,0 @@
-﻿namespace AimpSharp.GUI.Enums
-{
-	public enum UiPropIdCategory
-	{
-		AIMPUI_CATEGORY_PROPID_AUTOSIZE = UiPropIdWinControl.AIMPUI_WINCONTROL_MAX_PROPID + 1,
-		AIMPUI_CATEGORY_PROPID_CAPTION = UiPropIdWinControl.AIMPUI_WINCONTROL_MAX_PROPID + 2,
-	}
-}

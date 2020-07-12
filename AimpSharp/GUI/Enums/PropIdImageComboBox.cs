@@ -1,0 +1,8 @@
+﻿namespace AimpSharp.GUI.Enums
+{
+	public enum PropIdImageComboBox
+	{
+		AIMPUI_IMAGECOMBOBOX_PROPID_IMAGELIST = PropIdBaseButtonnedEdit.AIMPUI_BUTTONEDEDIT_MAX_PROPID + 1,
+		AIMPUI_IMAGECOMBOBOX_PROPID_ITEMINDEX = PropIdBaseButtonnedEdit.AIMPUI_BUTTONEDEDIT_MAX_PROPID + 2,
+	}
+}

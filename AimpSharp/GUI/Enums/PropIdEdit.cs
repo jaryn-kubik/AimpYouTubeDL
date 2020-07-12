@@ -1,0 +1,8 @@
+﻿namespace AimpSharp.GUI.Enums
+{
+	public enum PropIdEdit
+	{
+		AIMPUI_EDIT_PROPID_PASSWORDCHAR = PropIdBaseButtonnedEdit.AIMPUI_BUTTONEDEDIT_MAX_PROPID + 2,
+		AIMPUI_EDIT_PROPID_TEXTHINT = PropIdBaseButtonnedEdit.AIMPUI_BUTTONEDEDIT_MAX_PROPID + 3,
+	}
+}

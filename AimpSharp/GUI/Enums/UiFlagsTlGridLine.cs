@@ -1,8 +1,0 @@
-﻿namespace AimpSharp.GUI.Enums
-{
-	public enum UiFlagsTlGridLine
-	{
-		AIMPUI_FLAGS_TL_GRIDLINE_VERTICAL = 1,
-		AIMPUI_FLAGS_TL_GRIDLINE_HORIZONTAL = 2,
-	}
-}

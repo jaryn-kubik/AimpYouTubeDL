@@ -11,6 +11,6 @@ namespace AimpSharp.Core
 	public interface IAIMPServiceShutdown
 	{
 		[PreserveSig] HRESULT Restart(IAIMPString Params);
-		[PreserveSig] HRESULT Shutdown(ServiceShutdownFlags Flags);
+		[PreserveSig] HRESULT Shutdown(FlagsServiceShutdown Flags);
 	}
 }

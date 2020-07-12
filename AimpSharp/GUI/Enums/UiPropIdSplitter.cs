@@ -1,8 +1,0 @@
-﻿namespace AimpSharp.GUI.Enums
-{
-	public enum UiPropIdSplitter
-	{
-		AIMPUI_SPLITTER_PROPID_CANHIDE = UiPropIdWinControl.AIMPUI_WINCONTROL_MAX_PROPID + 1,
-		AIMPUI_SPLITTER_PROPID_CONTROL = UiPropIdWinControl.AIMPUI_WINCONTROL_MAX_PROPID + 2,
-	}
-}

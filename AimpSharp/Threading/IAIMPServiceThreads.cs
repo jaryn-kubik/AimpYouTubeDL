@@ -9,9 +9,9 @@ namespace AimpSharp.Threading
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPServiceThreads
 	{
-		[PreserveSig] HRESULT ExecuteInMainThread(IAIMPTask Task, ServiceThreadsFlags Flags);
+		[PreserveSig] HRESULT ExecuteInMainThread(IAIMPTask Task, FlagsServiceThreads Flags);
 		[PreserveSig] HRESULT ExecuteInThread(IAIMPTask Task, out IntPtr TaskHandle);
-		[PreserveSig] HRESULT Cancel(IntPtr TaskHandle, ServiceThreadsFlags Flags);
+		[PreserveSig] HRESULT Cancel(IntPtr TaskHandle, FlagsServiceThreads Flags);
 		[PreserveSig] HRESULT WaitFor(IntPtr TaskHandle);
 	}
 }

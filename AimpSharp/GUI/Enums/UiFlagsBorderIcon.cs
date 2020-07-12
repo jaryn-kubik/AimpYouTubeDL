@@ -1,9 +1,0 @@
-﻿namespace AimpSharp.GUI.Enums
-{
-	public enum UiFlagsBorderIcon
-	{
-		AIMPUI_FLAGS_BORDERICON_SYSTEMMENU = 1,
-		AIMPUI_FLAGS_BORDERICON_MINIMIZE = 2,
-		AIMPUI_FLAGS_BORDERICON_MAXIMIZE = 4,
-	}
-}

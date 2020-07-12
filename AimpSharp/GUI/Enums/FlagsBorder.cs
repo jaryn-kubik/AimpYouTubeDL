@@ -1,0 +1,10 @@
+﻿namespace AimpSharp.GUI.Enums
+{
+	public enum FlagsBorder
+	{
+		AIMPUI_FLAGS_BORDER_LEFT = 1,
+		AIMPUI_FLAGS_BORDER_TOP = 2,
+		AIMPUI_FLAGS_BORDER_RIGHT = 4,
+		AIMPUI_FLAGS_BORDER_BOTTOM = 8,
+	}
+}

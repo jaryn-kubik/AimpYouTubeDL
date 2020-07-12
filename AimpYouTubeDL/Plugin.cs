@@ -23,16 +23,16 @@ namespace aimp_test
 			var menuItem = Core.CreateObject<IAIMPMenuItem>(AimpSharp.Menu.IID.IAIMPMenuItem);
 
 			var str = Core.CreateString("test");
-			menuItem.SetValueAsObject(MenuItemPropId.AIMP_MENUITEM_PROPID_NAME, str);
+			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_NAME, str);
 
 			var menuItemParent = ((IAIMPServiceMenuManager)Core).GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING);
-			menuItem.SetValueAsObject(MenuItemPropId.AIMP_MENUITEM_PROPID_PARENT, menuItemParent);
+			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_PARENT, menuItemParent);
 
 			var onClick = new ActionEvent(() => MessageBox.Show("OnClick"));
-			menuItem.SetValueAsObject(MenuItemPropId.AIMP_MENUITEM_PROPID_EVENT, onClick);
+			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_EVENT, onClick);
 
 			var task = new ActionTask(() => MessageBox.Show("OnClick"));
-			var result = ((IAIMPServiceThreads)Core).ExecuteInMainThread(task, ServiceThreadsFlags.AIMP_SERVICE_THREADS_FLAGS_NONE);
+			var result = ((IAIMPServiceThreads)Core).ExecuteInMainThread(task, FlagsServiceThreads.AIMP_SERVICE_THREADS_FLAGS_NONE);
 
 			Core.RegisterExtension(AimpSharp.Menu.IID.IAIMPServiceMenuManager, menuItem);
 			return true;

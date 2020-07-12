@@ -1,0 +1,9 @@
+﻿namespace AimpSharp.GUI.Enums
+{
+	public enum FlagsTlNodeGet
+	{
+		AIMPUI_FLAGS_TL_NODE_GET_PARENT = -1,
+		AIMPUI_FLAGS_TL_NODE_GET_NEXTSIBLING = -2,
+		AIMPUI_FLAGS_TL_NODE_GET_PREVSIBLING = -3,
+	}
+}

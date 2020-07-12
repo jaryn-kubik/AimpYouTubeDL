@@ -1,9 +1,0 @@
-﻿namespace AimpSharp.GUI.Enums
-{
-	public enum UiFlagsButtonStyle
-	{
-		AIMPUI_FLAGS_BUTTON_STYLE_NORMAL = 0,
-		AIMPUI_FLAGS_BUTTON_STYLE_DROPDOWN = 1,
-		AIMPUI_FLAGS_BUTTON_STYLE_DROPDOWNBUTTON = 2,
-	}
-}

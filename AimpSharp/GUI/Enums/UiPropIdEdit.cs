@@ -1,8 +1,0 @@
-﻿namespace AimpSharp.GUI.Enums
-{
-	public enum UiPropIdEdit
-	{
-		AIMPUI_EDIT_PROPID_PASSWORDCHAR = UiPropIdBaseButtonnedEdit.AIMPUI_BUTTONEDEDIT_MAX_PROPID + 2,
-		AIMPUI_EDIT_PROPID_TEXTHINT = UiPropIdBaseButtonnedEdit.AIMPUI_BUTTONEDEDIT_MAX_PROPID + 3,
-	}
-}
