@@ -2,45 +2,18 @@
 using AimpSharp.Actions;
 using AimpSharp.Core;
 using AimpSharp.Menu;
+using AimpSharp.Menu.Enums;
 using AimpSharp.Objects;
-using NXPorts.Attributes;
 using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace aimp_test
 {
 	public static class Plugin
 	{
-		static Plugin()
+		public static void Init(IntPtr ptr)
 		{
-			AppDomain.CurrentDomain.AssemblyResolve += (_, args) =>
-			{
-				if (args.Name.StartsWith("AimpSharp"))
-				{
-					var dir = Path.GetDirectoryName(typeof(Plugin).Assembly.Location);
-					var path = Path.Combine(dir, "AimpSharp.dll");
-					return Assembly.LoadFrom(path);
-				}
-				return null;
-			};
-		}
-
-		[DllExport("AIMPPluginGetHeader", CallingConvention.StdCall)]
-		public static int AIMPPluginGetHeader(IntPtr ptr)
-		{
-			try
-			{
-				_instance = PluginWrapper.Create(ptr, "YouTube-DL 2", "cubis12321", "Support for playing audio from sites supported by youtube-dl", Initialize);
-				return 0;
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.ToString(), "Failed to load AimpYouTubeDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return -1;
-			}
+			PluginWrapper.Init(ptr, "YouTube-DL 2", "cubis12321", "Support for playing audio from sites supported by youtube-dl", Initialize);
 		}
 
 		private static bool Initialize()
@@ -60,7 +33,6 @@ namespace aimp_test
 			return true;
 		}
 
-		private static PluginWrapper _instance;
-		public static IAIMPCore Core => _instance.Core;
+		public static IAIMPCore Core => PluginWrapper.Core;
 	}
 }

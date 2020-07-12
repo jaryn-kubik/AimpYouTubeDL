@@ -1,5 +1,6 @@
 ﻿using AimpSharp.Core;
 using AimpSharp.Plugin;
+using AimpSharp.Plugin.Enums;
 using System;
 using System.Runtime.InteropServices;
 
@@ -20,15 +21,19 @@ namespace AimpSharp
 			_onInitialize = onInitialize;
 		}
 
-		public static PluginWrapper Create(IntPtr ptr, string name, string author, string description, Func<bool> onInitialize)
+		public static void Init(IntPtr ptr, string name, string author, string description, Func<bool> onInitialize)
 		{
-			var instance = new PluginWrapper(name, author, description, onInitialize);
-			var instancePtr = Marshal.GetComInterfaceForObject<PluginWrapper, IAIMPPlugin>(instance);
+			if (_instance != null)
+			{
+				throw new NotSupportedException("PluginWrapper.Init can only be called once!");
+			}
+			_instance = new PluginWrapper(name, author, description, onInitialize);
+			var instancePtr = Marshal.GetComInterfaceForObject<PluginWrapper, IAIMPPlugin>(_instance);
 			Marshal.WriteIntPtr(ptr, instancePtr);
-			return instance;
 		}
 
-		public IAIMPCore Core { get; private set; }
+		private static PluginWrapper _instance;
+		public static IAIMPCore Core { get; private set; }
 
 		public string InfoGet(PluginInfo Index)
 		{
@@ -48,7 +53,7 @@ namespace AimpSharp
 
 		public HRESULT Initialize(IAIMPCore Core)
 		{
-			this.Core = Core;
+			PluginWrapper.Core = Core;
 			if (_onInitialize())
 			{
 				return HRESULT.S_OK;

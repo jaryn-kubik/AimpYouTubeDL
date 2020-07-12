@@ -1,4 +1,5 @@
-﻿using AimpSharp.Objects;
+﻿using AimpSharp.Actions.Enums;
+using AimpSharp.Objects;
 using System.Runtime.InteropServices;
 
 namespace AimpSharp.Actions

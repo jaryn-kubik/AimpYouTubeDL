@@ -1,0 +1,8 @@
+﻿namespace AimpSharp.GUI.Enums
+{
+	public enum UiPropIdBaseButtonnedEdit
+	{
+		AIMPUI_BUTTONEDEDIT_PROPID_BUTTONSIMAGES = UiPropIdBaseEdit.AIMPUI_BASEEDIT_MAX_PROPID + 1,
+		AIMPUI_BUTTONEDEDIT_MAX_PROPID = UiPropIdBaseEdit.AIMPUI_BASEEDIT_MAX_PROPID + 10,
+	}
+}

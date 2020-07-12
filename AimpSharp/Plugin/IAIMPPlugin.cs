@@ -1,4 +1,5 @@
 ﻿using AimpSharp.Core;
+using AimpSharp.Plugin.Enums;
 using System;
 using System.Runtime.InteropServices;
 

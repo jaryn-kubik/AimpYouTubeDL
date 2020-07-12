@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AimpSharp.Objects.Structs;
+using System;
 using System.Runtime.InteropServices;
 
 namespace AimpSharp.Objects

@@ -1,4 +1,5 @@
-﻿using AimpSharp.Objects;
+﻿using AimpSharp.Menu.Enums;
+using AimpSharp.Objects;
 using System;
 
 namespace AimpSharp.Menu
@@ -7,43 +8,24 @@ namespace AimpSharp.Menu
 	{
 		public static IAIMPMenuItem GetBuiltIn(this IAIMPServiceMenuManager manager, MenuId menuId)
 		{
-			manager.GetBuiltIn(menuId, out var menuItemParent).EnsureSuccess();
+			manager.GetBuiltIn(menuId, out var menuItemParent);
 			return menuItemParent;
 		}
 
 		public static IAIMPMenuItem GetByID(this IAIMPServiceMenuManager manager, IAIMPString str)
 		{
-			manager.GetByID(str, out var menuItemParent).EnsureSuccess();
+			manager.GetByID(str, out var menuItemParent);
 			return menuItemParent;
 		}
 
-		public static void SetValueAsFloat(this IAIMPMenuItem propertyList, MenuItemPropId propId, double value) => propertyList.SetValueAsFloat((int)propId, value).EnsureSuccess();
-		public static void SetValueAsInt32(this IAIMPMenuItem propertyList, MenuItemPropId propId, int value) => propertyList.SetValueAsInt32((int)propId, value).EnsureSuccess();
-		public static void SetValueAsInt64(this IAIMPMenuItem propertyList, MenuItemPropId propId, long value) => propertyList.SetValueAsInt64((int)propId, value).EnsureSuccess();
-		public static void SetValueAsObject(this IAIMPMenuItem propertyList, MenuItemPropId propId, object value) => propertyList.SetValueAsObject((int)propId, value).EnsureSuccess();
+		public static void SetFloat(this IAIMPMenuItem propertyList, MenuItemPropId propId, double value) => propertyList.SetValueAsFloat(propId, value);
+		public static void SetInt(this IAIMPMenuItem propertyList, MenuItemPropId propId, int value) => propertyList.SetValueAsInt32(propId, value);
+		public static void SetLong(this IAIMPMenuItem propertyList, MenuItemPropId propId, long value) => propertyList.SetValueAsInt64(propId, value);
+		public static void SetObject(this IAIMPMenuItem propertyList, MenuItemPropId propId, object value) => propertyList.SetValueAsObject(propId, value);
 
-		public static double GetValueAsFloat(this IAIMPMenuItem propertyList, MenuItemPropId propId)
-		{
-			propertyList.GetValueAsFloat((int)propId, out var value).EnsureSuccess();
-			return value;
-		}
-
-		public static int GetValueAsInt32(this IAIMPMenuItem propertyList, MenuItemPropId propId)
-		{
-			propertyList.GetValueAsInt32((int)propId, out var value).EnsureSuccess();
-			return value;
-		}
-
-		public static long GetValueAsInt64(this IAIMPMenuItem propertyList, MenuItemPropId propId)
-		{
-			propertyList.GetValueAsInt64((int)propId, out var value).EnsureSuccess();
-			return value;
-		}
-
-		public static T GetValueAsObject<T>(this IAIMPMenuItem propertyList, MenuItemPropId propId, Guid IID)
-		{
-			propertyList.GetValueAsObject((int)propId, IID, out var value).EnsureSuccess();
-			return (T)value;
-		}
+		public static double GetFloat(this IAIMPMenuItem propertyList, MenuItemPropId propId) => propertyList.GetValueAsFloat(propId);
+		public static int GetInt(this IAIMPMenuItem propertyList, MenuItemPropId propId) => propertyList.GetValueAsInt32(propId);
+		public static long GetLong(this IAIMPMenuItem propertyList, MenuItemPropId propId) => propertyList.GetValueAsInt64(propId);
+		public static T GetObject<T>(this IAIMPMenuItem propertyList, MenuItemPropId propId, Guid IID) => propertyList.GetValueAsObject<T>(propId, IID);
 	}
 }

@@ -1,4 +1,5 @@
-﻿using AimpSharp.Objects;
+﻿using AimpSharp.Menu.Enums;
+using AimpSharp.Objects;
 using System.Runtime.InteropServices;
 
 namespace AimpSharp.Menu
