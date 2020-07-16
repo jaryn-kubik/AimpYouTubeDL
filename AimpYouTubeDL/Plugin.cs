@@ -38,7 +38,7 @@ namespace AimpYouTubeDL
 				Trace.Listeners.Clear();
 				Trace.Listeners.Add(new Logger(dirAppData));
 
-				if (PluginWrapper.Core.GetService<IAIMPServiceMenuManager>().GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING, out _) != HRESULT.S_OK)
+				if (PluginWrapper.Core.GetService<IAIMPServiceMenuManager>().GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING, out var _) != HRESULT.S_OK)
 				{
 					Trace.Fail("MenuManager not available.");
 					return false;
@@ -54,8 +54,7 @@ namespace AimpYouTubeDL
 				PluginWrapper.Core.RegisterExtension<IAIMPServicePlayer>(new PlayerHook());
 				PluginWrapper.Core.RegisterExtension<IAIMPServicePlaybackQueue>(new PlaybackQueue());
 
-				//_playback = new Playback(Player, _ytb);
-				//_optionsFrame = new OptionsFrame(Player, _ytb, _options);
+				Menu.AddPlaylistAddingMenu();
 				return true;
 			});
 		}
@@ -64,8 +63,6 @@ namespace AimpYouTubeDL
 		{
 			return Helpers.TryCatch(() =>
 			{
-				//Helpers.Dispose(ref _optionsFrame);
-				//Helpers.Dispose(ref _playback);
 				YouTube?.Dispose();
 				YouTube = null;
 				Options = null;

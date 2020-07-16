@@ -19,10 +19,10 @@
     <Compile Remove="Config\OptionsForm.cs" />
     <Compile Remove="Config\OptionsForm.Designer.cs" />
     <Compile Remove="Config\OptionsFrame.cs" />
-    <Compile Remove="PlaybackAddForm.cs" />
-    <Compile Remove="PlaybackAddForm.Designer.cs" />
     <EmbeddedResource Remove="Config\OptionsForm.resx" />
-    <EmbeddedResource Remove="PlaybackAddForm.resx" />
+    <Compile Update="PlaybackAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

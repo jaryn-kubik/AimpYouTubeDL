@@ -33,7 +33,7 @@ namespace AimpSharp
 			Marshal.WriteIntPtr(ptr, instancePtr);
 		}
 
-		public static void Collect()
+		private static void Collect()
 		{
 			for (var i = 0; i <= GC.MaxGeneration; i++)
 			{

@@ -81,14 +81,14 @@ namespace AimpYouTubeDL.YouTube
 			}
 		}
 
-		public IEnumerable<YouTubeDLInfo> GetInfo(string url)
+		public List<YouTubeDLInfo> GetInfo(string url)
 		{
-			var newValue = new Lazy<IEnumerable<YouTubeDLInfo>>(() => GetInfoInternal(url));
-			var value = _cache.AddOrGetExisting(url, newValue, DateTime.Now.AddMinutes(1)) as Lazy<IEnumerable<YouTubeDLInfo>>;
+			var newValue = new Lazy<List<YouTubeDLInfo>>(() => GetInfoInternal(url));
+			var value = _cache.AddOrGetExisting(url, newValue, DateTime.Now.AddMinutes(1)) as Lazy<List<YouTubeDLInfo>>;
 			return (value ?? newValue).Value;
 		}
 
-		private IEnumerable<YouTubeDLInfo> GetInfoInternal(string url)
+		private List<YouTubeDLInfo> GetInfoInternal(string url)
 		{
 			var extractor = GetExtractor(url);
 			var instance = GetInstance(extractor);

@@ -1,4 +1,4 @@
-﻿namespace AIMPYoutubeDL
+﻿namespace AimpYouTubeDL
 {
 	partial class PlaybackAddForm
 	{

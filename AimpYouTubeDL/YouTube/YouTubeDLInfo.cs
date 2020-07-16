@@ -1,4 +1,6 @@
-﻿using AimpSharp.FileManager;
+﻿using AimpSharp;
+using AimpSharp.Core;
+using AimpSharp.FileManager;
 using AimpSharp.FileManager.Enums;
 using AimpSharp.Objects;
 using Python.Runtime;
@@ -24,10 +26,9 @@ namespace AimpYouTubeDL.YouTube
 
 		public IAIMPFileInfo ToAimpFileInfo()
 		{
-			/*var fileInfo = new AimpFileInfo();
+			var fileInfo = PluginWrapper.Core.CreateObject<IAIMPFileInfo>();
 			UpdateAimpFileInfo(fileInfo);
-			return fileInfo;*/
-			return null;
+			return fileInfo;
 		}
 
 		public static YouTubeDLInfo FromResult(PyDict item, PyDict parent)
