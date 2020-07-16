@@ -7,7 +7,7 @@ using Python.Runtime;
 
 namespace AimpYouTubeDL.YouTube
 {
-	public class YouTubeDLInfo
+	public sealed class YouTubeDLInfo
 	{
 		public string WebpageUrl { get; set; }
 		public string Url { get; set; }
@@ -15,6 +15,9 @@ namespace AimpYouTubeDL.YouTube
 
 		public string Title { get; set; }
 		public string Album { get; set; }
+		public string Thumbnail { get; set; }
+
+		private YouTubeDLInfo() { }
 
 		public void UpdateAimpFileInfo(IAIMPFileInfo fileInfo)
 		{
@@ -42,6 +45,7 @@ namespace AimpYouTubeDL.YouTube
 
 			var title = GetKey<string>(item, "title");
 			var uploader = GetKey<string>(item, "uploader");
+			var thumbnail = GetKey<string>(item, "thumbnail");
 
 			if (extractor == _extractorSoundcloud && uploader != null)
 			{
@@ -55,7 +59,8 @@ namespace AimpYouTubeDL.YouTube
 				Duration = duration ?? 0,
 
 				Title = title ?? url,
-				Album = uploader
+				Album = uploader,
+				Thumbnail = thumbnail
 			};
 		}
 

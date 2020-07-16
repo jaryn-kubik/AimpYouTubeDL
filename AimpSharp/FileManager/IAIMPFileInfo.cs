@@ -1,7 +1,4 @@
-﻿using AimpSharp.FileManager.Enums;
-using AimpSharp.FileManager.Structs;
-using AimpSharp.Objects;
-using AimpSharp.Objects.Structs;
+﻿using AimpSharp.Objects;
 using System;
 using System.Runtime.InteropServices;
 
