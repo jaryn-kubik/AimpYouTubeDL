@@ -62,18 +62,14 @@ namespace AimpSharp
 		public HRESULT Initialize(IAIMPCore Core)
 		{
 			PluginWrapper.Core = Core;
-			if (_onInitialize())
-			{
-				Collect();
-				return HRESULT.S_OK;
-			}
-			return HRESULT.E_FAIL;
+			var result = _onInitialize();
+			Collect();
+			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
 		}
 
 		public HRESULT Finalize()
 		{
 			var result = _onDispose();
-
 			Marshal.FinalReleaseComObject(Core);
 			Collect();
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
