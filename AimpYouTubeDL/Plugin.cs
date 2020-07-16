@@ -1,43 +1,75 @@
 ﻿using AimpSharp;
-using AimpSharp.Actions;
 using AimpSharp.Core;
+using AimpSharp.Core.Enums;
 using AimpSharp.Menu;
 using AimpSharp.Menu.Enums;
-using AimpSharp.Objects;
-using AimpSharp.Threading;
-using AimpSharp.Threading.Enums;
+using AimpSharp.Player;
+using AimpYouTubeDL.Config;
+using AimpYouTubeDL.Hooks;
+using AimpYouTubeDL.Utils;
+using AimpYouTubeDL.YouTube;
 using System;
-using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 
-namespace aimp_test
+namespace AimpYouTubeDL
 {
 	public static class Plugin
 	{
+		public const string Name = "aimp_youtubedl";
+		public const string Scheme = @"ydl:\\";
+
+		public static Options Options { get; private set; }
+		public static YouTubeDL YouTube { get; private set; }
+
 		public static void Init(IntPtr ptr)
 		{
-			PluginWrapper.Init(ptr, "YouTube-DL 2", "cubis12321", "Support for playing audio from sites supported by youtube-dl", Initialize);
+			PluginWrapper.Init(ptr, "YouTube-DL", "cubis12321", "Support for playing audio from sites supported by youtube-dl", Initialize, Dispose);
 		}
 
 		private static bool Initialize()
 		{
-			var menuItem = Core.CreateObject<IAIMPMenuItem>();
+			return Helpers.TryCatch(() =>
+			{
+				PluginWrapper.Core.GetPath(CorePath.AIMP_CORE_PATH_PROFILE, out var dirProfile).EnsureSuccess();
+				var dirAppData = Path.Combine(dirProfile.GetData(), Name);
+				Directory.CreateDirectory(dirAppData);
 
-			var str = Core.CreateString("test");
-			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_NAME, str);
+				Trace.Listeners.Clear();
+				Trace.Listeners.Add(new Logger(dirAppData));
 
-			var menuItemParent = Core.GetService<IAIMPServiceMenuManager>().GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING);
-			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_PARENT, menuItemParent);
+				if (PluginWrapper.Core.GetService<IAIMPServiceMenuManager>().GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING, out _) != HRESULT.S_OK)
+				{
+					Trace.Fail("MenuManager not available.");
+					return false;
+				}
 
-			var onClick = new ActionEvent(() => MessageBox.Show("OnClick"));
-			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_EVENT, onClick);
+				Options = Options.Load(dirAppData);
+				YouTube = new YouTubeDL(dirAppData);
+				if (Options.AutoUpdate)
+				{
+					YouTube.Update();
+				}
 
-			var task = new ActionTask(() => MessageBox.Show("OnClick"));
-			var result = Core.GetService<IAIMPServiceThreads>().ExecuteInMainThread(task, FlagsServiceThreads.AIMP_SERVICE_THREADS_FLAGS_NONE);
+				PluginWrapper.Core.RegisterExtension<IAIMPServicePlayer>(new PlayerHook());
+				PluginWrapper.Core.RegisterExtension<IAIMPServicePlaybackQueue>(new PlaybackQueue());
 
-			Core.RegisterExtension<IAIMPServiceMenuManager>(menuItem);
-			return true;
+				//_playback = new Playback(Player, _ytb);
+				//_optionsFrame = new OptionsFrame(Player, _ytb, _options);
+				return true;
+			});
 		}
 
-		public static IAIMPCore Core => PluginWrapper.Core;
+		private static bool Dispose()
+		{
+			return Helpers.TryCatch(() =>
+			{
+				//Helpers.Dispose(ref _optionsFrame);
+				//Helpers.Dispose(ref _playback);
+				YouTube?.Dispose();
+				YouTube = null;
+				Options = null;
+			});
+		}
 	}
 }

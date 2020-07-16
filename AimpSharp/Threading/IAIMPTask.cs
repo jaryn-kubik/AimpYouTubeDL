@@ -8,6 +8,6 @@ namespace AimpSharp.Threading
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPTask
 	{
-		[PreserveSig] void Execute(IAIMPTaskOwner Owner);
+		[PreserveSig] HRESULT Execute(IAIMPTaskOwner Owner);
 	}
 }

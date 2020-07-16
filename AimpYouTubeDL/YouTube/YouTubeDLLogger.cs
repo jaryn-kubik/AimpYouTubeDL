@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.YouTube
 {
 	public class YouTubeDLLogger
 	{

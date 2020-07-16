@@ -1,8 +1,9 @@
-﻿using AIMP.SDK;
-using AIMP.SDK.FileManager;
+﻿using AimpSharp.FileManager;
+using AimpSharp.FileManager.Enums;
+using AimpSharp.Objects;
 using Python.Runtime;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.YouTube
 {
 	public class YouTubeDLInfo
 	{
@@ -13,23 +14,20 @@ namespace AIMPYoutubeDL
 		public string Title { get; set; }
 		public string Album { get; set; }
 
-		public void UpdateAimpFileInfo(IAimpFileInfo fileInfo)
+		public void UpdateAimpFileInfo(IAIMPFileInfo fileInfo)
 		{
-			fileInfo.FileName = Playback.Scheme + WebpageUrl;
-			fileInfo.Title = Title;
-			fileInfo.Duration = Duration;
-			fileInfo.Album = Album;
-			if (fileInfo.AlbumArt == null)
-			{
-				fileInfo.AlbumArt = new System.Drawing.Bitmap(1, 1);
-			}
+			fileInfo.SetValueAsString(PropIdFileInfo.AIMP_FILEINFO_PROPID_FILENAME, Plugin.Scheme + WebpageUrl);
+			fileInfo.SetValueAsString(PropIdFileInfo.AIMP_FILEINFO_PROPID_TITLE, Title);
+			fileInfo.SetValueAsFloat(PropIdFileInfo.AIMP_FILEINFO_PROPID_DURATION, Duration);
+			fileInfo.SetValueAsString(PropIdFileInfo.AIMP_FILEINFO_PROPID_ALBUM, Album);
 		}
 
-		public IAimpFileInfo ToAimpFileInfo()
+		public IAIMPFileInfo ToAimpFileInfo()
 		{
-			var fileInfo = new AimpFileInfo();
+			/*var fileInfo = new AimpFileInfo();
 			UpdateAimpFileInfo(fileInfo);
-			return fileInfo;
+			return fileInfo;*/
+			return null;
 		}
 
 		public static YouTubeDLInfo FromResult(PyDict item, PyDict parent)

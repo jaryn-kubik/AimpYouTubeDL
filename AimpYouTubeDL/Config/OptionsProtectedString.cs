@@ -5,7 +5,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.Config
 {
 	public sealed class OptionsProtectedString : IXmlSerializable
 	{

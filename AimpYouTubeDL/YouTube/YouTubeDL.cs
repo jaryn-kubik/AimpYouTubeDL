@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Caching;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.YouTube
 {
 	public class YouTubeDL : IDisposable
 	{
@@ -18,19 +19,19 @@ namespace AIMPYoutubeDL
 		private const string _versionInvalid = "INVALID";
 
 		private readonly string _file;
-		private readonly Options _options;
 		private readonly string _cookieFile;
 
 		private IntPtr _python;
 		private Lazy<PyObject> _module = new Lazy<PyObject>(() => Py.Import(_moduleName));
 		private readonly Dictionary<string, PyObject> _instances = new Dictionary<string, PyObject>();
 
-		public YouTubeDL(string dirAppData, Options options)
+		private readonly MemoryCache _cache = new MemoryCache(nameof(YouTubeDL));
+
+		public YouTubeDL(string dirAppData)
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			_file = Path.Combine(dirAppData, _fileName);
 			_cookieFile = Path.Combine(dirAppData, _cookieFileName);
-			_options = options;
 
 			var dirPlugin = Path.GetDirectoryName(typeof(YouTubeDL).Assembly.Location);
 			var dirPython = Path.Combine(dirPlugin, "python");
@@ -82,8 +83,13 @@ namespace AIMPYoutubeDL
 
 		public IEnumerable<YouTubeDLInfo> GetInfo(string url)
 		{
-			EnsureModuleExists();
+			var newValue = new Lazy<IEnumerable<YouTubeDLInfo>>(() => GetInfoInternal(url));
+			var value = _cache.AddOrGetExisting(url, newValue, DateTime.Now.AddMinutes(1)) as Lazy<IEnumerable<YouTubeDLInfo>>;
+			return (value ?? newValue).Value;
+		}
 
+		private IEnumerable<YouTubeDLInfo> GetInfoInternal(string url)
+		{
 			var extractor = GetExtractor(url);
 			var instance = GetInstance(extractor);
 
@@ -113,7 +119,7 @@ namespace AIMPYoutubeDL
 				using (Py.GIL())
 				{
 					var options = new PyDict();
-					options["format"] = _options.Format.ToPython();
+					options["format"] = Plugin.Options.Format.ToPython();
 					options["noplaylist"] = true.ToPython();
 					options["extract_flat"] = "in_playlist".ToPython();
 					options["no_color"] = true.ToPython();
@@ -121,7 +127,7 @@ namespace AIMPYoutubeDL
 					options["cookiefile"] = _cookieFile.ToPython();
 					options["nocheckcertificate"] = true.ToPython();
 
-					var auth = _options.Auths.Find(x => x.Extractor == extractor);
+					var auth = Plugin.Options.Auths.Find(x => x.Extractor == extractor);
 					if (auth != null)
 					{
 						options["username"] = ((string)auth.UserName).ToPython();
@@ -182,20 +188,16 @@ namespace AIMPYoutubeDL
 				var newVersion = string.Empty;
 				if (currentVersion != _versionInvalid)
 				{
-					using (var stream = http.GetStreamAsync(_updateLatest).Result)
-					using (var reader = new StreamReader(stream))
-					{
-						newVersion = reader.ReadToEnd()?.Trim();
-					}
+					using var stream = http.GetStreamAsync(_updateLatest).Result;
+					using var reader = new StreamReader(stream);
+					newVersion = reader.ReadToEnd()?.Trim();
 				}
 
 				if (currentVersion != newVersion)
 				{
-					using (var stream = http.GetStreamAsync(_updateUrl).Result)
-					using (var fileStream = new FileStream(_file, FileMode.Create))
-					{
-						stream.CopyTo(fileStream);
-					}
+					using var stream = http.GetStreamAsync(_updateUrl).Result;
+					using var fileStream = new FileStream(_file, FileMode.Create);
+					stream.CopyTo(fileStream);
 				}
 			}
 			Version = GetVersion();

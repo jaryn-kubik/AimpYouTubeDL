@@ -1,5 +1,8 @@
 ﻿using AIMP.SDK.Options;
 using AIMP.SDK.Player;
+using AimpYouTubeDL.Config;
+using AimpYouTubeDL.Utils;
+using AimpYouTubeDL.YouTube;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

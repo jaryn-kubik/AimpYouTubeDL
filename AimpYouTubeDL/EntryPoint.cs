@@ -1,5 +1,4 @@
-﻿using aimp_test;
-using NXPorts.Attributes;
+﻿using NXPorts.Attributes;
 using System;
 using System.IO;
 using System.Reflection;
@@ -14,13 +13,12 @@ namespace AimpYouTubeDL
 		{
 			AppDomain.CurrentDomain.AssemblyResolve += (_, args) =>
 			{
-				if (args.Name.StartsWith("AimpSharp"))
-				{
-					var dir = Path.GetDirectoryName(typeof(EntryPoint).Assembly.Location);
-					var path = Path.Combine(dir, "AimpSharp.dll");
-					return Assembly.LoadFrom(path);
-				}
-				return null;
+				var name = new AssemblyName(args.Name).Name;
+				var dir = Path.GetDirectoryName(typeof(EntryPoint).Assembly.Location);
+				var path = Path.Combine(dir, name + ".dll");
+				return File.Exists(path)
+					? Assembly.LoadFrom(path)
+					: null;
 			};
 		}
 

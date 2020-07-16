@@ -2,22 +2,23 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.Utils
 {
 	public class Logger : TraceListener
 	{
 		private StreamWriter _stream;
 
-		public Logger(string dirAppData, string fileName)
+		public Logger(string dirAppData)
 		{
-			var path = Path.Combine(dirAppData, fileName + ".log");
+			var path = Path.Combine(dirAppData, Plugin.Name + ".log");
 			_stream = new StreamWriter(path, false) { AutoFlush = true };
 		}
 
 		public override void Close()
 		{
 			base.Close();
-			Utils.Dispose(ref _stream);
+			_stream?.Dispose();
+			_stream = null;
 		}
 
 		public override void Write(string message)

@@ -32,6 +32,12 @@ namespace AimpSharp.Objects
 			propertyList.SetValueAsObject(Convert.ToInt32(propId), value).EnsureSuccess();
 		}
 
+		public static void SetValueAsString<TEnum>(this IAIMPPropertyList propertyList, TEnum propId, string value) where TEnum : Enum
+		{
+			var str = PluginWrapper.Core.CreateString(value);
+			propertyList.SetValueAsObject(propId, str);
+		}
+
 		public static double GetValueAsFloat<TEnum>(this IAIMPPropertyList propertyList, TEnum propId) where TEnum : Enum
 		{
 			propertyList.GetValueAsFloat(Convert.ToInt32(propId), out var value).EnsureSuccess();
@@ -50,10 +56,16 @@ namespace AimpSharp.Objects
 			return value;
 		}
 
-		public static T GetValueAsObject<T>(this IAIMPPropertyList propertyList, Enum propId, Guid IID)
+		public static T GetValueAsObject<T>(this IAIMPPropertyList propertyList, Enum propId)
 		{
-			propertyList.GetValueAsObject(Convert.ToInt32(propId), IID, out var value).EnsureSuccess();
+			propertyList.GetValueAsObject(Convert.ToInt32(propId), typeof(T).GUID, out var value).EnsureSuccess();
 			return (T)value;
+		}
+
+		public static string GetValueAsString<TEnum>(this IAIMPPropertyList propertyList, TEnum propId) where TEnum : Enum
+		{
+			var value = propertyList.GetValueAsObject<IAIMPString>(propId);
+			return value.GetData();
 		}
 	}
 }

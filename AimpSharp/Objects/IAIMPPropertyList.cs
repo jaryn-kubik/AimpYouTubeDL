@@ -8,8 +8,8 @@ namespace AimpSharp.Objects
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPropertyList
 	{
-		[PreserveSig] void BeginUpdate();
-		[PreserveSig] void EndUpdate();
+		[PreserveSig] HRESULT BeginUpdate();
+		[PreserveSig] HRESULT EndUpdate();
 		[PreserveSig] HRESULT Reset();
 
 		[PreserveSig] HRESULT GetValueAsFloat(int PropertyID, out double Value);

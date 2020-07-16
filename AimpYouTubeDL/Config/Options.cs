@@ -6,7 +6,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.Config
 {
 	public sealed class Options
 	{
@@ -32,28 +32,26 @@ namespace AIMPYoutubeDL
 
 		public void Save()
 		{
-			using (var ms = new MemoryStream())
-			using (var stream = new StreamWriter(ms))
-			{
-				var serializer = new XmlSerializer(GetType());
-				serializer.Serialize(stream, this);
-				stream.Flush();
-				File.WriteAllBytes(_path, ms.ToArray());
-			}
+			using var ms = new MemoryStream();
+			using var stream = new StreamWriter(ms);
+
+			var serializer = new XmlSerializer(GetType());
+			serializer.Serialize(stream, this);
+			stream.Flush();
+			File.WriteAllBytes(_path, ms.ToArray());
 		}
 
-		public static Options Load(string dirAppData, string fileName)
+		public static Options Load(string dirAppData)
 		{
-			var path = Path.Combine(dirAppData, fileName + ".xml");
+			var path = Path.Combine(dirAppData, Plugin.Name + ".xml");
 			try
 			{
-				using (var stream = File.OpenRead(path))
-				{
-					var serializer = new XmlSerializer(typeof(Options));
-					var result = (Options)serializer.Deserialize(stream);
-					result._path = path;
-					return result;
-				}
+				using var stream = File.OpenRead(path);
+
+				var serializer = new XmlSerializer(typeof(Options));
+				var result = (Options)serializer.Deserialize(stream);
+				result._path = path;
+				return result;
 			}
 			catch (Exception ex)
 			{

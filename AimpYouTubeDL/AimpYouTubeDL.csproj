@@ -1,15 +1,43 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>latest</LangVersion>
-    <AssemblyName>aimp_test</AssemblyName>
+    <DefineConstants>TRACE</DefineConstants>
+    <UseWindowsForms>true</UseWindowsForms>
+
+    <AssemblyName>aimp_youtubedl</AssemblyName>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>C:\Program Files (x86)\AIMP\Plugins\aimp_test</OutputPath>
+    <OutputPath>C:\Program Files (x86)\AIMP\Plugins\$(AssemblyName)</OutputPath>
+
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Config\OptionsForm.cs" />
+    <Compile Remove="Config\OptionsForm.Designer.cs" />
+    <Compile Remove="Config\OptionsFrame.cs" />
+    <Compile Remove="PlaybackAddForm.cs" />
+    <Compile Remove="PlaybackAddForm.Designer.cs" />
+    <EmbeddedResource Remove="Config\OptionsForm.resx" />
+    <EmbeddedResource Remove="PlaybackAddForm.resx" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="NXPorts" Version="1.0.0" />
+    <PackageReference Include="Python.Runtime.NETStandard" Version="3.7.1" />
     <ProjectReference Include="..\AimpSharp\AimpSharp.csproj" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Security" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Unzip SourceFiles="$(ProjectDir)python-3.7.3-embed-win32.zip" DestinationFolder="$(OutDir)python" />
+    <Delete Files="$(OutDir)python\python.exe" />
+    <Delete Files="$(OutDir)python\pythonw.exe" />
+  </Target>
 </Project>

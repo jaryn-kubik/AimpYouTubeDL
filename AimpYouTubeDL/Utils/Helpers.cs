@@ -1,11 +1,10 @@
-﻿using AIMP.SDK.Player;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.Utils
 {
-	public static class Utils
+	public static class Helpers
 	{
 		public static bool TryCatch(Action action)
 		{
@@ -13,6 +12,19 @@ namespace AIMPYoutubeDL
 			{
 				action();
 				return true;
+			}
+			catch (Exception ex)
+			{
+				HandleException(ex);
+				return false;
+			}
+		}
+
+		public static bool TryCatch(Func<bool> func)
+		{
+			try
+			{
+				return func();
 			}
 			catch (Exception ex)
 			{
@@ -42,25 +54,18 @@ namespace AIMPYoutubeDL
 			MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
-		public static void Dispose<T>(ref T obj)
-			where T : class, IDisposable
-		{
-			obj?.Dispose();
-			obj = null;
-		}
-
-		public static VisualStyle GetVisualStyle(IAimpPlayer player)
+		/*public static VisualStyle GetVisualStyle(IAimpPlayer player)
 		{
 			try
 			{
 				var mode = player.ServiceConfig.GetValueAsInt32("System\\NightMode");
-				if (mode == 2 || (mode == 0 && Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1")?.ToString() == "0"))
+				if (mode == 2 || mode == 0 && Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", "1")?.ToString() == "0")
 				{
 					return VisualStyle.Dark;
 				}
 			}
 			catch { }
 			return VisualStyle.Light;
-		}
+		}*/
 	}
 }
