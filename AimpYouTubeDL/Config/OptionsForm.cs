@@ -1,5 +1,4 @@
-﻿using AimpYouTubeDL.Config;
-using AimpYouTubeDL.Utils;
+﻿using AimpYouTubeDL.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace AIMPYoutubeDL
+namespace AimpYouTubeDL.Config
 {
 	public partial class OptionsForm : Form
 	{
@@ -26,7 +25,7 @@ namespace AIMPYoutubeDL
 				_update.FlatAppearance.BorderColor = _authRemove.FlatAppearance.BorderColor = _authAdd.FlatAppearance.BorderColor = Color.FromArgb(100, 100, 100);
 			}
 
-			_caption.Text = $"{Plugin.PluginName} v{Plugin.PluginVersion}";
+			_caption.Text = $"{Plugin.Name} v{Plugin.Version}";
 			_authList.DisplayMember = nameof(OptionsAuth.Extractor);
 		}
 

@@ -3,6 +3,7 @@ using AimpSharp.Core;
 using AimpSharp.Core.Enums;
 using AimpSharp.Menu;
 using AimpSharp.Menu.Enums;
+using AimpSharp.Options;
 using AimpSharp.Player;
 using AimpYouTubeDL.Config;
 using AimpYouTubeDL.Hooks;
@@ -17,14 +18,16 @@ namespace AimpYouTubeDL
 	public static class Plugin
 	{
 		public const string Name = "aimp_youtubedl";
+		public const string NameFriendly = "YouTube-DL";
 		public const string Scheme = @"ydl:\\";
 
+		public static string Version => typeof(Plugin).Assembly.GetName().Version.ToString();
 		public static Options Options { get; private set; }
 		public static YouTubeDL YouTube { get; private set; }
 
 		public static void Init(IntPtr ptr)
 		{
-			PluginWrapper.Init(ptr, "YouTube-DL", "cubis12321", "Support for playing audio from sites supported by youtube-dl", Initialize, Dispose);
+			PluginWrapper.Init(ptr, NameFriendly, "cubis12321", "Support for playing audio from sites supported by youtube-dl", Initialize, Dispose);
 		}
 
 		private static bool Initialize()
@@ -54,6 +57,7 @@ namespace AimpYouTubeDL
 				PluginWrapper.Core.RegisterExtension<IAIMPServicePlayer>(new PlayerHook());
 				PluginWrapper.Core.RegisterExtension<IAIMPServicePlaybackQueue>(new PlaybackQueue());
 
+				PluginWrapper.Core.RegisterExtension<IAIMPServiceOptionsDialog>(new OptionsFrame());
 				Menu.AddPlaylistAddingMenu();
 				return true;
 			});

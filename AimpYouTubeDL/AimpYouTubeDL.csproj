@@ -16,13 +16,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Config\OptionsForm.cs" />
-    <Compile Remove="Config\OptionsForm.Designer.cs" />
-    <Compile Remove="Config\OptionsFrame.cs" />
-    <EmbeddedResource Remove="Config\OptionsForm.resx" />
-    <Compile Update="PlaybackAddForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="PlaybackAddForm.cs" SubType="Form" />
+    <Compile Update="Config\OptionsForm.cs" SubType="Form" />
   </ItemGroup>
 
   <ItemGroup>

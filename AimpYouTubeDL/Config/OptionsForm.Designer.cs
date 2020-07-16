@@ -1,4 +1,4 @@
-﻿namespace AIMPYoutubeDL
+﻿namespace AimpYouTubeDL.Config
 {
 	partial class OptionsForm
 	{
