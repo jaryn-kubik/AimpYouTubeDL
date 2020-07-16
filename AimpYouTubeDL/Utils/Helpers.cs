@@ -1,8 +1,10 @@
 ﻿using AimpSharp;
 using AimpSharp.Core;
 using AimpSharp.Objects;
+using AimpYouTubeDL.YouTube;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AimpYouTubeDL.Utils
@@ -58,6 +60,23 @@ namespace AimpYouTubeDL.Utils
 			}
 			catch { }
 			return VisualStyle.Light;
+		}
+
+		public static bool TryGetInfo(this IAIMPString str, out YouTubeDLInfo info)
+		{
+			return str.GetData().TryGetInfo(out info);
+		}
+
+		public static bool TryGetInfo(this string str, out YouTubeDLInfo info)
+		{
+			if (str.StartsWith(Plugin.Scheme))
+			{
+				var url = str.Substring(Plugin.Scheme.Length);
+				info = Plugin.YouTube.GetInfo(url).Single();
+				return true;
+			}
+			info = null;
+			return false;
 		}
 	}
 }

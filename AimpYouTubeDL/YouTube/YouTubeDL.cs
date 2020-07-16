@@ -188,14 +188,14 @@ namespace AimpYouTubeDL.YouTube
 				var newVersion = string.Empty;
 				if (currentVersion != _versionInvalid)
 				{
-					using var stream = http.GetStreamAsync(_updateLatest).Result;
+					using var stream = http.GetStreamAsync(_updateLatest).GetAwaiter().GetResult();
 					using var reader = new StreamReader(stream);
 					newVersion = reader.ReadToEnd()?.Trim();
 				}
 
 				if (currentVersion != newVersion)
 				{
-					using var stream = http.GetStreamAsync(_updateUrl).Result;
+					using var stream = http.GetStreamAsync(_updateUrl).GetAwaiter().GetResult();
 					using var fileStream = new FileStream(_file, FileMode.Create);
 					stream.CopyTo(fileStream);
 				}

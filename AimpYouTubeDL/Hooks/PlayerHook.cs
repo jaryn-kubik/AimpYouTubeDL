@@ -2,7 +2,6 @@
 using AimpSharp.Objects;
 using AimpSharp.Player;
 using AimpYouTubeDL.Utils;
-using System.Linq;
 
 namespace AimpYouTubeDL.Hooks
 {
@@ -12,11 +11,8 @@ namespace AimpYouTubeDL.Hooks
 		{
 			Handled = Helpers.TryCatch(() =>
 			{
-				var url = URL.GetData();
-				if (url.StartsWith(Plugin.Scheme))
+				if (URL.TryGetInfo(out var info))
 				{
-					url = url.Substring(Plugin.Scheme.Length);
-					var info = Plugin.YouTube.GetInfo(url).Single();
 					URL.SetData(info.Url).EnsureSuccess();
 					return true;
 				}

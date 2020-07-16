@@ -7,7 +7,6 @@ using AimpSharp.Player.Enums;
 using AimpSharp.Playlists;
 using AimpSharp.Playlists.Enums;
 using AimpYouTubeDL.Utils;
-using System.Linq;
 
 namespace AimpYouTubeDL.Hooks
 {
@@ -28,11 +27,10 @@ namespace AimpYouTubeDL.Hooks
 			Helpers.TryCatch(() =>
 			{
 				var fileInfo = Item.GetValueAsObject<IAIMPFileInfo>(PropIdPlaylistItem.AIMP_PLAYLISTITEM_PROPID_FILEINFO);
-				var url = fileInfo.GetValueAsString(PropIdFileInfo.AIMP_FILEINFO_PROPID_FILENAME);
-				if (url.StartsWith(Plugin.Scheme))
+				var fileName = fileInfo.GetValueAsString(PropIdFileInfo.AIMP_FILEINFO_PROPID_FILENAME);
+
+				if (fileName.TryGetInfo(out var info))
 				{
-					url = url.Substring(Plugin.Scheme.Length);
-					var info = Plugin.YouTube.GetInfo(url).Single();
 					info.UpdateAimpFileInfo(fileInfo);
 				}
 			});
