@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AimpSharp", "AimpSharp\AimpSharp.csproj", "{45BF1D91-6B11-418E-AD3F-A31E15204006}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AimpSharpRef", "AimpSharpRef\AimpSharpRef.vcxproj", "{AF1F9FF3-9D1C-43B7-80B7-1B920A9DD791}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AimpYouTubeDL", "AimpYouTubeDL\AimpYouTubeDL.csproj", "{AF4881AD-7420-445C-BD64-578860F44CE7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45BF1D91-6B11-418E-AD3F-A31E15204006}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45BF1D91-6B11-418E-AD3F-A31E15204006}.Debug|x86.Build.0 = Debug|Any CPU
+		{45BF1D91-6B11-418E-AD3F-A31E15204006}.Release|x86.ActiveCfg = Release|Any CPU
+		{45BF1D91-6B11-418E-AD3F-A31E15204006}.Release|x86.Build.0 = Release|Any CPU
+		{AF1F9FF3-9D1C-43B7-80B7-1B920A9DD791}.Debug|x86.ActiveCfg = Debug|Win32
+		{AF1F9FF3-9D1C-43B7-80B7-1B920A9DD791}.Debug|x86.Build.0 = Debug|Win32
+		{AF1F9FF3-9D1C-43B7-80B7-1B920A9DD791}.Release|x86.ActiveCfg = Release|Win32
+		{AF1F9FF3-9D1C-43B7-80B7-1B920A9DD791}.Release|x86.Build.0 = Release|Win32
+		{AF4881AD-7420-445C-BD64-578860F44CE7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF4881AD-7420-445C-BD64-578860F44CE7}.Debug|x86.Build.0 = Debug|Any CPU
+		{AF4881AD-7420-445C-BD64-578860F44CE7}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF4881AD-7420-445C-BD64-578860F44CE7}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A84F643-11DD-4F0C-B0ED-1183652DB5AD}
+	EndGlobalSection
+EndGlobal

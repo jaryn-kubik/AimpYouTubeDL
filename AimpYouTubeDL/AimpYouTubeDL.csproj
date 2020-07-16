@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <DefineConstants>TRACE</DefineConstants>
+    <UseWindowsForms>true</UseWindowsForms>
+
+    <AssemblyName>aimp_youtubedl</AssemblyName>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>C:\Program Files (x86)\AIMP\Plugins\$(AssemblyName)</OutputPath>
+
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="PlaybackAddForm.cs" SubType="Form" />
+    <Compile Update="Config\OptionsForm.cs" SubType="Form" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NXPorts" Version="1.0.0" />
+    <PackageReference Include="Python.Runtime.NETStandard" Version="3.7.1" />
+    <ProjectReference Include="..\AimpSharp\AimpSharp.csproj" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Security" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Unzip SourceFiles="$(ProjectDir)python-3.7.3-embed-win32.zip" DestinationFolder="$(OutDir)python" />
+    <Delete Files="$(OutDir)python\python.exe" />
+    <Delete Files="$(OutDir)python\pythonw.exe" />
+  </Target>
+</Project>

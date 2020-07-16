@@ -1,0 +1,9 @@
+﻿namespace AimpSharp.GUI.Enums
+{
+	public enum FlagsTlSortByFlag
+	{
+		AIMPUI_FLAGS_TL_SORTBY_FLAG_AUTO = 0,
+		AIMPUI_FLAGS_TL_SORTBY_FLAG_ASCENDING = 1,
+		AIMPUI_FLAGS_TL_SORTBY_FLAG_DESCENDING = 2,
+	}
+}

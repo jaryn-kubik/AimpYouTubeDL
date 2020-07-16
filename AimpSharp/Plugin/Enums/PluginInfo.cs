@@ -1,0 +1,10 @@
+﻿namespace AimpSharp.Plugin.Enums
+{
+	public enum PluginInfo
+	{
+		AIMP_PLUGIN_INFO_NAME = 0x0,
+		AIMP_PLUGIN_INFO_AUTHOR = 0x1,
+		AIMP_PLUGIN_INFO_SHORT_DESCRIPTION = 0x2,
+		AIMP_PLUGIN_INFO_FULL_DESCRIPTION = 0x3,
+	}
+}

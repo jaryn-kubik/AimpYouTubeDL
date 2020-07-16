@@ -1,0 +1,10 @@
+﻿namespace AimpSharp.GUI.Enums
+{
+	public enum FlagsFont
+	{
+		AIMPUI_FLAGS_FONT_BOLD = 1,
+		AIMPUI_FLAGS_FONT_ITALIC = 2,
+		AIMPUI_FLAGS_FONT_UNDERLINE = 4,
+		AIMPUI_FLAGS_FONT_STRIKEOUT = 8,
+	}
+}
