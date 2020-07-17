@@ -49,6 +49,11 @@ namespace AimpYouTubeDL.YouTube
 			if (extractor == _extractorYoutube)
 			{
 				thumbnail = thumbnail?.Replace("/vi_webp/", "/vi/").Replace(".webp", ".jpg");
+				var index = thumbnail?.IndexOf('?');
+				if (index > 0)
+				{
+					thumbnail = thumbnail.Substring(0, index.Value);
+				}
 			}
 
 			if (extractor == _extractorSoundcloud && uploader != null)

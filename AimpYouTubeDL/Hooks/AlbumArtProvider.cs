@@ -21,6 +21,7 @@ namespace AimpYouTubeDL.Hooks
 		public HRESULT Get(IAIMPString FileURI, IAIMPString Artist, IAIMPString Album, IAIMPPropertyList Options, out IAIMPImageContainer Image)
 		{
 			var result = Helpers.TryCatch(TryGetImage, FileURI, out Image);
+			Marshal.CleanupUnusedObjectsInCurrentContext();
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
 		}
 

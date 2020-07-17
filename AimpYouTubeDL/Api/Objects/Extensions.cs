@@ -1,5 +1,6 @@
 ﻿using AimpYouTubeDL.Api.Core;
 using System;
+using System.Runtime.InteropServices;
 
 namespace AimpYouTubeDL.Api.Objects
 {
@@ -36,6 +37,7 @@ namespace AimpYouTubeDL.Api.Objects
 		{
 			var str = Plugin.Core.CreateString(value);
 			propertyList.SetValueAsObject(propId, str);
+			Marshal.FinalReleaseComObject(str);
 		}
 
 		public static double GetValueAsFloat<TEnum>(this IAIMPPropertyList propertyList, TEnum propId) where TEnum : Enum
@@ -65,7 +67,9 @@ namespace AimpYouTubeDL.Api.Objects
 		public static string GetValueAsString<TEnum>(this IAIMPPropertyList propertyList, TEnum propId) where TEnum : Enum
 		{
 			var value = propertyList.GetValueAsObject<IAIMPString>(propId);
-			return value.GetData();
+			var result = value.GetData();
+			Marshal.FinalReleaseComObject(value);
+			return result;
 		}
 	}
 }

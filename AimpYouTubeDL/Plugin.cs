@@ -74,6 +74,7 @@ namespace AimpYouTubeDL
 			{
 				return _core;
 			}
+			Trace.WriteLine("Creating IAIMPCore instance", nameof(Plugin));
 			return (IAIMPCore)Marshal.GetUniqueObjectForIUnknown(_corePtr);
 		}
 
@@ -114,6 +115,7 @@ namespace AimpYouTubeDL
 				core.RegisterExtension<IAIMPServiceAlbumArt>(new AlbumArtProvider());
 				return true;
 			});
+			Marshal.CleanupUnusedObjectsInCurrentContext();
 			Collect();
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
 		}
@@ -126,8 +128,10 @@ namespace AimpYouTubeDL
 				_youtube = null;
 				_options = null;
 				Marshal.FinalReleaseComObject(_core);
+				Marshal.CleanupUnusedObjectsInCurrentContext();
 				Collect();
 			});
+			Trace.WriteLine(nameof(Finalize), nameof(Plugin));
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
 		}
 

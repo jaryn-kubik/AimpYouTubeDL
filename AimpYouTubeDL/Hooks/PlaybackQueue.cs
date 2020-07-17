@@ -7,6 +7,7 @@ using AimpYouTubeDL.Api.Player.Enums;
 using AimpYouTubeDL.Api.Playlists;
 using AimpYouTubeDL.Api.Playlists.Enums;
 using AimpYouTubeDL.Utils;
+using System.Runtime.InteropServices;
 
 namespace AimpYouTubeDL.Hooks
 {
@@ -33,6 +34,8 @@ namespace AimpYouTubeDL.Hooks
 				{
 					info.UpdateAimpFileInfo(fileInfo);
 				}
+
+				Marshal.FinalReleaseComObject(fileInfo);
 			});
 		}
 	}

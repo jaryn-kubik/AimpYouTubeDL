@@ -25,17 +25,18 @@ namespace AimpYouTubeDL
 		}
 
 		[DllExport("AIMPPluginGetHeader", CallingConvention.StdCall)]
-		public static HRESULT AIMPPluginGetHeader([MarshalAs(UnmanagedType.Interface)] out IAIMPPlugin header)
+		public static HRESULT AIMPPluginGetHeader(IntPtr ptr)
 		{
 			try
 			{
-				header = Plugin.Init();
+				var plugin = Plugin.Init();
+				var pluginPtr = Marshal.GetComInterfaceForObject<Plugin, IAIMPPlugin>(plugin);
+				Marshal.WriteIntPtr(ptr, pluginPtr);
 				return HRESULT.S_OK;
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString(), "Failed to load AimpYouTubeDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				header = null;
 				return HRESULT.E_FAIL;
 			}
 		}
