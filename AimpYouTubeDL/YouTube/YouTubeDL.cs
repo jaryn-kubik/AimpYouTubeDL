@@ -84,7 +84,7 @@ namespace AimpYouTubeDL.YouTube
 		public List<YouTubeDLInfo> GetInfo(string url)
 		{
 			var newValue = new Lazy<List<YouTubeDLInfo>>(() => GetInfoInternal(url));
-			var value = _cache.AddOrGetExisting(url, newValue, DateTime.Now.AddMinutes(1)) as Lazy<List<YouTubeDLInfo>>;
+			var value = _cache.AddOrGetExisting(url, newValue, DateTime.Now.AddMinutes(5)) as Lazy<List<YouTubeDLInfo>>;
 			return (value ?? newValue).Value;
 		}
 

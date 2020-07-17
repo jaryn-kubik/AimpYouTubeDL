@@ -38,6 +38,21 @@ namespace AimpYouTubeDL.Utils
 			}
 		}
 
+		public delegate bool TryCatchWithResult<TValue, TResult>(TValue value, out TResult result);
+		public static bool TryCatch<TValue, TResult>(TryCatchWithResult<TValue, TResult> func, TValue value, out TResult result)
+		{
+			try
+			{
+				return func(value, out result);
+			}
+			catch (Exception ex)
+			{
+				HandleException(ex);
+				result = default;
+				return false;
+			}
+		}
+
 		private static void HandleException(Exception ex)
 		{
 			Trace.Fail(ex.ToString());

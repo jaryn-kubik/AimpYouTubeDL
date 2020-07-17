@@ -1,4 +1,5 @@
-﻿using AimpSharp.Objects.Structs;
+﻿using AimpSharp.Objects.Enums;
+using AimpSharp.Objects.Structs;
 using System;
 using System.Runtime.InteropServices;
 
@@ -10,7 +11,7 @@ namespace AimpSharp.Objects
 	public interface IAIMPImageContainer
 	{
 		[PreserveSig] HRESULT CreateImage(out IAIMPImage Image);
-		[PreserveSig] HRESULT GetInfo(out SIZE Size, out int FormatID);
+		[PreserveSig] HRESULT GetInfo(out SIZE Size, out ImageFormat FormatID);
 		[PreserveSig] IntPtr GetData();
 		[PreserveSig] int GetDataSize();
 		[PreserveSig] HRESULT SetDataSize(int Value);

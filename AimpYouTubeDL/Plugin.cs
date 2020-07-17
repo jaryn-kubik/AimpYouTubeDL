@@ -1,4 +1,5 @@
 ﻿using AimpSharp;
+using AimpSharp.AlbumArt;
 using AimpSharp.Core;
 using AimpSharp.Core.Enums;
 using AimpSharp.Menu;
@@ -59,6 +60,8 @@ namespace AimpYouTubeDL
 
 				PluginWrapper.Core.RegisterExtension<IAIMPServiceOptionsDialog>(new OptionsFrame());
 				Menu.AddPlaylistAddingMenu();
+
+				PluginWrapper.Core.RegisterExtension<IAIMPServiceAlbumArt>(new AlbumArtProvider());
 				return true;
 			});
 		}

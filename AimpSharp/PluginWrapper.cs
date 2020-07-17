@@ -3,6 +3,7 @@ using AimpSharp.Plugin;
 using AimpSharp.Plugin.Enums;
 using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace AimpSharp
 {
@@ -24,13 +25,26 @@ namespace AimpSharp
 		}
 
 		private static PluginWrapper _instance;
-		public static IAIMPCore Core { get; private set; }
+		private static int _threadId;
+		private static IntPtr _corePtr;
+		private static IAIMPCore _core;
+		public static IAIMPCore Core => GetCore();
 
 		public static void Init(IntPtr ptr, string name, string author, string description, Func<bool> onInitialize, Func<bool> onDispose)
 		{
 			_instance = new PluginWrapper(name, author, description, onInitialize, onDispose);
 			var instancePtr = Marshal.GetComInterfaceForObject<PluginWrapper, IAIMPPlugin>(_instance);
 			Marshal.WriteIntPtr(ptr, instancePtr);
+		}
+
+		private static IAIMPCore GetCore()
+		{
+			var threadId = Thread.CurrentThread.ManagedThreadId;
+			if (threadId == _threadId)
+			{
+				return _core;
+			}
+			return (IAIMPCore)Marshal.GetUniqueObjectForIUnknown(_corePtr);
 		}
 
 		private static void Collect()
@@ -61,7 +75,10 @@ namespace AimpSharp
 
 		public HRESULT Initialize(IAIMPCore Core)
 		{
-			PluginWrapper.Core = Core;
+			_threadId = Thread.CurrentThread.ManagedThreadId;
+			_corePtr = Marshal.GetIUnknownForObject(Core);
+			_core = Core;
+
 			var result = _onInitialize();
 			Collect();
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
@@ -70,7 +87,7 @@ namespace AimpSharp
 		public HRESULT Finalize()
 		{
 			var result = _onDispose();
-			Marshal.FinalReleaseComObject(Core);
+			Marshal.FinalReleaseComObject(_core);
 			Collect();
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
 		}

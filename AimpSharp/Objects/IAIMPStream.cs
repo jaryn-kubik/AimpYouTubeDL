@@ -12,7 +12,7 @@ namespace AimpSharp.Objects
 		[PreserveSig] HRESULT SetSize(long Value);
 		[PreserveSig] long GetPosition();
 		[PreserveSig] HRESULT Seek(long Offset, int Mode);
-		[PreserveSig] int Read(IntPtr Buffer, uint Count);
-		[PreserveSig] HRESULT Write(IntPtr Buffer, uint Count, out uint Written);
+		[PreserveSig] int Read(byte[] Buffer, uint Count);
+		[PreserveSig] HRESULT Write(byte[] Buffer, uint Count, out uint Written);
 	}
 }

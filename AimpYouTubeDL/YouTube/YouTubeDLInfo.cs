@@ -47,6 +47,11 @@ namespace AimpYouTubeDL.YouTube
 			var uploader = GetKey<string>(item, "uploader");
 			var thumbnail = GetKey<string>(item, "thumbnail");
 
+			if (extractor == _extractorYoutube)
+			{
+				thumbnail = thumbnail?.Replace("/vi_webp/", "/vi/").Replace(".webp", ".jpg");
+			}
+
 			if (extractor == _extractorSoundcloud && uploader != null)
 			{
 				title = $"{uploader} - {title}";
