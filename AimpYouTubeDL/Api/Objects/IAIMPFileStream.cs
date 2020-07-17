@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.Objects
+namespace AimpYouTubeDL.Api.Objects
 {
 	[ComImport]
 	[Guid("41494D50-4669-6C65-5374-7265616D0000")]

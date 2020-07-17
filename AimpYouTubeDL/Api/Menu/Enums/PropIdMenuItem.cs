@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Menu.Enums
+﻿namespace AimpYouTubeDL.Api.Menu.Enums
 {
 	public enum PropIdMenuItem
 	{

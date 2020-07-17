@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.FileManager.Enums
+﻿namespace AimpYouTubeDL.Api.FileManager.Enums
 {
 	public enum FlagsFileFormats
 	{

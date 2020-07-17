@@ -1,8 +1,8 @@
-﻿using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api.Objects;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.GUI
+namespace AimpYouTubeDL.Api.GUI
 {
 	[ComImport]
 	[Guid(IID.IAIMPUITreeListGroup_IID)]

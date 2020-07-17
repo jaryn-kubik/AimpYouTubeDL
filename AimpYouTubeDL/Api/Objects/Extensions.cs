@@ -1,7 +1,7 @@
-﻿using AimpSharp.Core;
+﻿using AimpYouTubeDL.Api.Core;
 using System;
 
-namespace AimpSharp.Objects
+namespace AimpYouTubeDL.Api.Objects
 {
 	public static class Extensions
 	{

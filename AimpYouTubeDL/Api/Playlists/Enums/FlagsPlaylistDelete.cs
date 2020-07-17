@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Playlists.Enums
+﻿namespace AimpYouTubeDL.Api.Playlists.Enums
 {
 	public enum FlagsPlaylistDelete
 	{

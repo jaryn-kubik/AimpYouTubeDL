@@ -1,8 +1,8 @@
-﻿using AimpSharp.Menu.Enums;
-using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api.Menu.Enums;
+using AimpYouTubeDL.Api.Objects;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.Menu
+namespace AimpYouTubeDL.Api.Menu
 {
 	[ComImport]
 	[Guid("41494D50-5372-764D-656E-754D6E677200")]

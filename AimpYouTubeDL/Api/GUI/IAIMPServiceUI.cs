@@ -1,9 +1,9 @@
-﻿using AimpSharp.GUI.Enum;
-using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api.GUI.Enum;
+using AimpYouTubeDL.Api.Objects;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.GUI
+namespace AimpYouTubeDL.Api.GUI
 {
 	[ComImport]
 	[Guid(IID.IAIMPServiceUI_IID)]

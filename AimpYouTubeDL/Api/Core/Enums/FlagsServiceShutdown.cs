@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Core.Enums
+﻿namespace AimpYouTubeDL.Api.Core.Enums
 {
 	public enum FlagsServiceShutdown
 	{

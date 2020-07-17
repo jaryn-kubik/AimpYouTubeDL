@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.Lyrics
+namespace AimpYouTubeDL.Api.Lyrics
 {
 	public static class IID
 	{

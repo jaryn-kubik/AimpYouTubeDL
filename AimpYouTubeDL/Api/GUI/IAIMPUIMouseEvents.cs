@@ -1,8 +1,8 @@
-﻿using AimpSharp.GUI.Enums;
+﻿using AimpYouTubeDL.Api.GUI.Enums;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.GUI
+namespace AimpYouTubeDL.Api.GUI
 {
 	[ComImport]
 	[Guid(IID.IAIMPUIMouseEvents_IID)]

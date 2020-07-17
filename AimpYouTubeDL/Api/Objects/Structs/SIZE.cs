@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace AimpSharp.Objects.Structs
+namespace AimpYouTubeDL.Api.Objects.Structs
 {
 	[StructLayout(LayoutKind.Sequential)]
 	public struct SIZE

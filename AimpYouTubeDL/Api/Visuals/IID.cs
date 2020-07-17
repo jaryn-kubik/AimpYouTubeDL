@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.Visuals
+namespace AimpYouTubeDL.Api.Visuals
 {
 	public static class IID
 	{

@@ -1,11 +1,11 @@
-﻿using AimpSharp;
-using AimpSharp.FileManager;
-using AimpSharp.FileManager.Enums;
-using AimpSharp.Objects;
-using AimpSharp.Player;
-using AimpSharp.Player.Enums;
-using AimpSharp.Playlists;
-using AimpSharp.Playlists.Enums;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.FileManager;
+using AimpYouTubeDL.Api.FileManager.Enums;
+using AimpYouTubeDL.Api.Objects;
+using AimpYouTubeDL.Api.Player;
+using AimpYouTubeDL.Api.Player.Enums;
+using AimpYouTubeDL.Api.Playlists;
+using AimpYouTubeDL.Api.Playlists.Enums;
 using AimpYouTubeDL.Utils;
 
 namespace AimpYouTubeDL.Hooks

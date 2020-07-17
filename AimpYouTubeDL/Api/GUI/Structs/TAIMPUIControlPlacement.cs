@@ -1,8 +1,8 @@
-﻿using AimpSharp.GUI.Enums;
-using AimpSharp.Objects.Structs;
+﻿using AimpYouTubeDL.Api.GUI.Enums;
+using AimpYouTubeDL.Api.Objects.Structs;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.GUI.Structs
+namespace AimpYouTubeDL.Api.GUI.Structs
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct TAIMPUIControlPlacement

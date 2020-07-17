@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.Internet
+namespace AimpYouTubeDL.Api.Internet
 {
 	public static class IID
 	{

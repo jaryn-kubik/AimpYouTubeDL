@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.Scheduler
+namespace AimpYouTubeDL.Api.Scheduler
 {
 	public static class IID
 	{

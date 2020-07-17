@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Player.Enums
+﻿namespace AimpYouTubeDL.Api.Player.Enums
 {
 	public enum PropIdServicePlayer
 	{

@@ -1,7 +1,7 @@
-﻿using AimpSharp.Menu.Enums;
-using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api.Menu.Enums;
+using AimpYouTubeDL.Api.Objects;
 
-namespace AimpSharp.Menu
+namespace AimpYouTubeDL.Api.Menu
 {
 	public static class Extensions
 	{

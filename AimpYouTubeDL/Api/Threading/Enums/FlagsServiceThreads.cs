@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Threading.Enums
+﻿namespace AimpYouTubeDL.Api.Threading.Enums
 {
 	public enum FlagsServiceThreads
 	{

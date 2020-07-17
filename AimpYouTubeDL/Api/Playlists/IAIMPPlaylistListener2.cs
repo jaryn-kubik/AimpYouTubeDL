@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace AimpSharp.Playlists
+namespace AimpYouTubeDL.Api.Playlists
 {
 	[ComImport]
 	[Guid("41494D50-506C-734C-7374-6E7232000000")]

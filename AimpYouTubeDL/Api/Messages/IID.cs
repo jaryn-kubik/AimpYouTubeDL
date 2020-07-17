@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.Messages
+namespace AimpYouTubeDL.Api.Messages
 {
 	public static class IID
 	{

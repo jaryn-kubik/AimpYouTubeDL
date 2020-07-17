@@ -1,8 +1,8 @@
-﻿using AimpSharp.Threading.Enums;
+﻿using AimpYouTubeDL.Api.Threading.Enums;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.Threading
+namespace AimpYouTubeDL.Api.Threading
 {
 	[ComImport]
 	[Guid("41494D50-5461-736B-5072-696F72697479")]

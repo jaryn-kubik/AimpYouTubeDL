@@ -1,9 +1,9 @@
-﻿using AimpSharp;
-using AimpSharp.AlbumArt;
-using AimpSharp.AlbumArt.Enums;
-using AimpSharp.Core;
-using AimpSharp.Objects;
-using AimpSharp.Objects.Enums;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.AlbumArt;
+using AimpYouTubeDL.Api.AlbumArt.Enums;
+using AimpYouTubeDL.Api.Core;
+using AimpYouTubeDL.Api.Objects;
+using AimpYouTubeDL.Api.Objects.Enums;
 using AimpYouTubeDL.Utils;
 using System.Diagnostics;
 using System.Net.Http;

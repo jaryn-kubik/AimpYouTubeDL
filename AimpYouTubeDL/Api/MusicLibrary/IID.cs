@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.MusicLibrary
+namespace AimpYouTubeDL.Api.MusicLibrary
 {
 	public static class IID
 	{

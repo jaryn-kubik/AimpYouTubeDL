@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace AimpSharp.Objects.Structs
+namespace AimpYouTubeDL.Api.Objects.Structs
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct RGBQUAD

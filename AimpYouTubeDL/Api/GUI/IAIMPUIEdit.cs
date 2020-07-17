@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.GUI
+namespace AimpYouTubeDL.Api.GUI
 {
 	[ComImport]
 	[Guid(IID.IAIMPUIEdit_IID)]

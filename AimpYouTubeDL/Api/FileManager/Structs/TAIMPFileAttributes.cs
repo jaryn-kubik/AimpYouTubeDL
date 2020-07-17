@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace AimpSharp.FileManager.Structs
+namespace AimpYouTubeDL.Api.FileManager.Structs
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct TAIMPFileAttributes

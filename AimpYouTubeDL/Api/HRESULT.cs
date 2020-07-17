@@ -1,4 +1,4 @@
-﻿namespace AimpSharp
+﻿namespace AimpYouTubeDL.Api
 {
 	public enum HRESULT : uint
 	{

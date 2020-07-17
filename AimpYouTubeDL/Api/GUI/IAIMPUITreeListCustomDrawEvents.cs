@@ -1,8 +1,8 @@
-﻿using AimpSharp.Objects.Structs;
+﻿using AimpYouTubeDL.Api.Objects.Structs;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.GUI
+namespace AimpYouTubeDL.Api.GUI
 {
 	[ComImport]
 	[Guid(IID.IAIMPUITreeListCustomDrawEvents_IID)]

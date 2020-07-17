@@ -1,8 +1,8 @@
-﻿using AimpSharp.Player.Enums;
-using AimpSharp.Playlists;
+﻿using AimpYouTubeDL.Api.Player.Enums;
+using AimpYouTubeDL.Api.Playlists;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.Player
+namespace AimpYouTubeDL.Api.Player
 {
 	[ComImport]
 	[Guid("41494D50-4578-7450-6C61-796261636B51")]

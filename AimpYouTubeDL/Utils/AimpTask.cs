@@ -1,5 +1,5 @@
-﻿using AimpSharp;
-using AimpSharp.Threading;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.Threading;
 using System;
 
 namespace AimpYouTubeDL.Utils

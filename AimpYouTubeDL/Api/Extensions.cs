@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp
+namespace AimpYouTubeDL.Api
 {
 	public static class Extensions
 	{

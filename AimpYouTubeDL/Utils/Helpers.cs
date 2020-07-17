@@ -1,6 +1,6 @@
-﻿using AimpSharp;
-using AimpSharp.Core;
-using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.Core;
+using AimpYouTubeDL.Api.Objects;
 using AimpYouTubeDL.YouTube;
 using System;
 using System.Diagnostics;

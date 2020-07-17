@@ -1,8 +1,8 @@
-﻿using AimpSharp;
-using AimpSharp.Core;
-using AimpSharp.FileManager;
-using AimpSharp.FileManager.Enums;
-using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.Core;
+using AimpYouTubeDL.Api.FileManager;
+using AimpYouTubeDL.Api.FileManager.Enums;
+using AimpYouTubeDL.Api.Objects;
 using Python.Runtime;
 
 namespace AimpYouTubeDL.YouTube

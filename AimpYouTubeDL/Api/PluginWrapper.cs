@@ -1,11 +1,11 @@
-﻿using AimpSharp.Core;
-using AimpSharp.Plugin;
-using AimpSharp.Plugin.Enums;
+﻿using AimpYouTubeDL.Api.Core;
+using AimpYouTubeDL.Api.Plugin;
+using AimpYouTubeDL.Api.Plugin.Enums;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace AimpSharp
+namespace AimpYouTubeDL.Api
 {
 	public sealed class PluginWrapper : IAIMPPlugin
 	{

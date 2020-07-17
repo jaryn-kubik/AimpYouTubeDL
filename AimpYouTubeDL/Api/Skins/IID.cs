@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.Skins
+namespace AimpYouTubeDL.Api.Skins
 {
 	public static class IID
 	{

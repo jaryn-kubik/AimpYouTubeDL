@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Options
+﻿namespace AimpYouTubeDL.Api.Options
 {
 	public enum NotificationOptionsDialog
 	{

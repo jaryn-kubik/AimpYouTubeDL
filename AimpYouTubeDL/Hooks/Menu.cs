@@ -1,10 +1,10 @@
-﻿using AimpSharp;
-using AimpSharp.Core;
-using AimpSharp.Menu;
-using AimpSharp.Menu.Enums;
-using AimpSharp.Objects;
-using AimpSharp.Playlists;
-using AimpSharp.Playlists.Enums;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.Core;
+using AimpYouTubeDL.Api.Menu;
+using AimpYouTubeDL.Api.Menu.Enums;
+using AimpYouTubeDL.Api.Objects;
+using AimpYouTubeDL.Api.Playlists;
+using AimpYouTubeDL.Api.Playlists.Enums;
 using AimpYouTubeDL.Utils;
 using System.Windows.Forms;
 

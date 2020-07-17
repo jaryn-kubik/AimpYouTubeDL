@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.GUI
+namespace AimpYouTubeDL.Api.GUI
 {
 	public static class IID
 	{

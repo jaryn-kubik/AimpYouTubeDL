@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Actions.Enums
+﻿namespace AimpYouTubeDL.Api.Actions.Enums
 {
 	public enum ActionHotkeyModifier : short
 	{

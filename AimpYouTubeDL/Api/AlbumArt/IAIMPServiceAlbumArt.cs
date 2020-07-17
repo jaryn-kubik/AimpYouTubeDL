@@ -1,10 +1,10 @@
-﻿using AimpSharp.AlbumArt.Enums;
-using AimpSharp.FileManager;
-using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api.AlbumArt.Enums;
+using AimpYouTubeDL.Api.FileManager;
+using AimpYouTubeDL.Api.Objects;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.AlbumArt
+namespace AimpYouTubeDL.Api.AlbumArt
 {
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	public delegate void TAIMPServiceAlbumArtReceiveProc(IAIMPImage image, IAIMPImageContainer imageContainer, IntPtr UserData);

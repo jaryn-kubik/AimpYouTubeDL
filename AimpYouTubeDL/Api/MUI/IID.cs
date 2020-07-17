@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.MUI
+namespace AimpYouTubeDL.Api.MUI
 {
 	public static class IID
 	{

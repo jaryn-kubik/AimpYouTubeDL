@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace AimpSharp.Player.Structs
+namespace AimpYouTubeDL.Api.Player.Structs
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct TAIMPWaveformPeakInfo

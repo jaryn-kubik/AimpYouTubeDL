@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.TagEditor
+namespace AimpYouTubeDL.Api.TagEditor
 {
 	public static class IID
 	{

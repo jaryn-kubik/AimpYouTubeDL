@@ -1,7 +1,7 @@
-﻿using AimpSharp;
-using AimpSharp.Core;
-using AimpSharp.Objects;
-using AimpSharp.Options;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.Core;
+using AimpYouTubeDL.Api.Objects;
+using AimpYouTubeDL.Api.Options;
 using AimpYouTubeDL.Utils;
 using System;
 using System.Collections.Generic;

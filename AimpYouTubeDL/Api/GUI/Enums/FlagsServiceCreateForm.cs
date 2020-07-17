@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.GUI.Enum
+﻿namespace AimpYouTubeDL.Api.GUI.Enum
 {
 	public enum FlagsServiceCreateForm
 	{

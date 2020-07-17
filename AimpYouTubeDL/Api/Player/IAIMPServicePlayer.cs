@@ -1,10 +1,10 @@
-﻿using AimpSharp.FileManager;
-using AimpSharp.Objects;
-using AimpSharp.Player.Enums;
-using AimpSharp.Playlists;
+﻿using AimpYouTubeDL.Api.FileManager;
+using AimpYouTubeDL.Api.Objects;
+using AimpYouTubeDL.Api.Player.Enums;
+using AimpYouTubeDL.Api.Playlists;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.Player
+namespace AimpYouTubeDL.Api.Player
 {
 	[ComImport]
 	[Guid("41494D50-5372-7650-6C61-796572000000")]

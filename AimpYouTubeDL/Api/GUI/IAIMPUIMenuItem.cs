@@ -1,9 +1,9 @@
-﻿using AimpSharp.Menu;
-using AimpSharp.Objects;
+﻿using AimpYouTubeDL.Api.Menu;
+using AimpYouTubeDL.Api.Objects;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.GUI
+namespace AimpYouTubeDL.Api.GUI
 {
 	[ComImport]
 	[Guid(IID.IAIMPUIMenuItem_IID)]

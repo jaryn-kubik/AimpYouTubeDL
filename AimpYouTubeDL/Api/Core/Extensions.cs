@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Core
+﻿namespace AimpYouTubeDL.Api.Core
 {
 	public static class Extensions
 	{

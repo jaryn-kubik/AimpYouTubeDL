@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.FileManager
+namespace AimpYouTubeDL.Api.FileManager
 {
 	[ComImport]
 	[Guid("41465343-6D64-4669-6C65-466C64720000")]

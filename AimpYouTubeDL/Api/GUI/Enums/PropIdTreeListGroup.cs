@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.GUI.Enums
+﻿namespace AimpYouTubeDL.Api.GUI.Enums
 {
 	public enum PropIdTreeListGroup
 	{

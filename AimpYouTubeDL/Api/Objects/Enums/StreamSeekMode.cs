@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.Objects.Enums
+﻿namespace AimpYouTubeDL.Api.Objects.Enums
 {
 	public enum StreamSeekMode
 	{

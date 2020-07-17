@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AimpSharp.Decoders
+namespace AimpYouTubeDL.Api.Decoders
 {
 	public static class IID
 	{

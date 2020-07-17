@@ -1,9 +1,9 @@
-﻿using AimpSharp.Objects.Enums;
-using AimpSharp.Objects.Structs;
+﻿using AimpYouTubeDL.Api.Objects.Enums;
+using AimpYouTubeDL.Api.Objects.Structs;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.Objects
+namespace AimpYouTubeDL.Api.Objects
 {
 	[ComImport]
 	[Guid("41494D50-496D-6167-6543-6F6E746E7200")]

@@ -1,6 +1,6 @@
-﻿using AimpSharp;
-using AimpSharp.Objects;
-using AimpSharp.Player;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.Objects;
+using AimpYouTubeDL.Api.Player;
 using AimpYouTubeDL.Utils;
 
 namespace AimpYouTubeDL.Hooks

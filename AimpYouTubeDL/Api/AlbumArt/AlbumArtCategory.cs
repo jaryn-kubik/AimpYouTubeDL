@@ -1,4 +1,4 @@
-﻿namespace AimpSharp.AlbumArt.Enums
+﻿namespace AimpYouTubeDL.Api.AlbumArt.Enums
 {
 	public enum AlbumArtCategory
 	{

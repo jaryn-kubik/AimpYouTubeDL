@@ -1,9 +1,9 @@
-﻿using AimpSharp.Objects;
-using AimpSharp.Playlists.Enums;
+﻿using AimpYouTubeDL.Api.Objects;
+using AimpYouTubeDL.Api.Playlists.Enums;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpSharp.Playlists
+namespace AimpYouTubeDL.Api.Playlists
 {
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	public delegate int TAIMPPlaylistCompareProc(IAIMPPlaylistItem Item1, IAIMPPlaylistItem Item2, IntPtr UserData);
