@@ -33,7 +33,7 @@ namespace AimpYouTubeDL.Hooks
 				using var client = new HttpClient();
 				var bytes = client.GetByteArrayAsync(info.Thumbnail).GetAwaiter().GetResult();
 
-				var container = PluginWrapper.Core.CreateObject<IAIMPImageContainer>();
+				var container = Plugin.Core.CreateObject<IAIMPImageContainer>();
 				container.SetDataSize(bytes.Length).EnsureSuccess();
 				var ptr = container.GetData();
 				Marshal.Copy(bytes, 0, ptr, bytes.Length);

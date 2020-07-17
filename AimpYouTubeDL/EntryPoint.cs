@@ -1,4 +1,6 @@
-﻿using NXPorts.Attributes;
+﻿using AimpYouTubeDL.Api;
+using AimpYouTubeDL.Api.Plugins;
+using NXPorts.Attributes;
 using System;
 using System.IO;
 using System.Reflection;
@@ -23,17 +25,18 @@ namespace AimpYouTubeDL
 		}
 
 		[DllExport("AIMPPluginGetHeader", CallingConvention.StdCall)]
-		public static int AIMPPluginGetHeader(IntPtr ptr)
+		public static HRESULT AIMPPluginGetHeader([MarshalAs(UnmanagedType.Interface)] out IAIMPPlugin header)
 		{
 			try
 			{
-				Plugin.Init(ptr);
-				return 0;
+				header = Plugin.Init();
+				return HRESULT.S_OK;
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString(), "Failed to load AimpYouTubeDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return -1;
+				header = null;
+				return HRESULT.E_FAIL;
 			}
 		}
 	}

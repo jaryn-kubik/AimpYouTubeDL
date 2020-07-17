@@ -19,7 +19,7 @@ namespace AimpYouTubeDL.Config
 
 		public HRESULT GetName(out IAIMPString S)
 		{
-			S = PluginWrapper.Core.CreateString(Plugin.NameFriendly);
+			S = Plugin.Core.CreateString(Plugin.NameFriendly);
 			return HRESULT.S_OK;
 		}
 
@@ -66,7 +66,7 @@ namespace AimpYouTubeDL.Config
 
 		private void OnOptionsChanged(object sender, EventArgs e)
 		{
-			PluginWrapper.Core.GetService<IAIMPServiceOptionsDialog>().FrameModified(this).EnsureSuccess();
+			Plugin.Core.GetService<IAIMPServiceOptionsDialog>().FrameModified(this).EnsureSuccess();
 		}
 
 		private void OnUpdateYouTubeDL(object sender, EventArgs e)

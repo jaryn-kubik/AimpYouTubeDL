@@ -14,15 +14,15 @@ namespace AimpYouTubeDL.Hooks
 	{
 		public static void AddPlaylistAddingMenu()
 		{
-			var manager = PluginWrapper.Core.GetService<IAIMPServiceMenuManager>();
+			var manager = Plugin.Core.GetService<IAIMPServiceMenuManager>();
 			manager.GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING, out var menuPlaylistAdding).EnsureSuccess();
 
-			var menuItem = PluginWrapper.Core.CreateObject<IAIMPMenuItem>();
+			var menuItem = Plugin.Core.CreateObject<IAIMPMenuItem>();
 			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_PARENT, menuPlaylistAdding);
 			menuItem.SetValueAsString(PropIdMenuItem.AIMP_MENUITEM_PROPID_NAME, "YouTube-DL");
 			menuItem.SetValueAsObject(PropIdMenuItem.AIMP_MENUITEM_PROPID_EVENT, new AimpActionEvent(OnPlaylistAddingMenu));
 
-			PluginWrapper.Core.RegisterExtension<IAIMPServiceMenuManager>(menuItem);
+			Plugin.Core.RegisterExtension<IAIMPServiceMenuManager>(menuItem);
 		}
 
 		private static void OnPlaylistAddingMenu()
@@ -40,7 +40,7 @@ namespace AimpYouTubeDL.Hooks
 		private static void AddToPlaylist(string url, string newPlaylist)
 		{
 			var infos = Plugin.YouTube.GetInfo(url);
-			var list = PluginWrapper.Core.CreateObject<IAIMPObjectList>();
+			var list = Plugin.Core.CreateObject<IAIMPObjectList>();
 
 			foreach (var info in infos)
 			{
@@ -56,13 +56,13 @@ namespace AimpYouTubeDL.Hooks
 		{
 			if (string.IsNullOrWhiteSpace(newPlaylist))
 			{
-				PluginWrapper.Core.GetService<IAIMPServicePlaylistManager>().GetActivePlaylist(out var playlist).EnsureSuccess();
+				Plugin.Core.GetService<IAIMPServicePlaylistManager>().GetActivePlaylist(out var playlist).EnsureSuccess();
 				return playlist;
 			}
 			else
 			{
-				var name = PluginWrapper.Core.CreateString(newPlaylist);
-				PluginWrapper.Core.GetService<IAIMPServicePlaylistManager>().CreatePlaylist(name, true, out var playlist).EnsureSuccess();
+				var name = Plugin.Core.CreateString(newPlaylist);
+				Plugin.Core.GetService<IAIMPServicePlaylistManager>().CreatePlaylist(name, true, out var playlist).EnsureSuccess();
 				return playlist;
 			}
 		}

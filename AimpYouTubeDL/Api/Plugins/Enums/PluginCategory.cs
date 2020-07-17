@@ -1,4 +1,4 @@
-﻿namespace AimpYouTubeDL.Api.Plugin.Enums
+﻿namespace AimpYouTubeDL.Api.Plugins.Enums
 {
 	public enum PluginCategory
 	{

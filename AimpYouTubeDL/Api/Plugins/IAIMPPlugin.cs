@@ -1,9 +1,9 @@
 ﻿using AimpYouTubeDL.Api.Core;
-using AimpYouTubeDL.Api.Plugin.Enums;
+using AimpYouTubeDL.Api.Plugins.Enums;
 using System;
 using System.Runtime.InteropServices;
 
-namespace AimpYouTubeDL.Api.Plugin
+namespace AimpYouTubeDL.Api.Plugins
 {
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface IAIMPPlugin

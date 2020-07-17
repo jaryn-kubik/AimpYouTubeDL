@@ -34,7 +34,7 @@ namespace AimpYouTubeDL.Api.Objects
 
 		public static void SetValueAsString<TEnum>(this IAIMPPropertyList propertyList, TEnum propId, string value) where TEnum : Enum
 		{
-			var str = PluginWrapper.Core.CreateString(value);
+			var str = Plugin.Core.CreateString(value);
 			propertyList.SetValueAsObject(propId, str);
 		}
 

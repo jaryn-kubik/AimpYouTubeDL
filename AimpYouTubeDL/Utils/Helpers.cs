@@ -63,7 +63,7 @@ namespace AimpYouTubeDL.Utils
 		{
 			try
 			{
-				PluginWrapper.Core.GetService<IAIMPServiceConfig>().GetValueAsInt32(PluginWrapper.Core.CreateString("System\\NightMode"), out var mode).EnsureSuccess();
+				Plugin.Core.GetService<IAIMPServiceConfig>().GetValueAsInt32(Plugin.Core.CreateString("System\\NightMode"), out var mode).EnsureSuccess();
 				if (mode == 2)
 				{
 					return VisualStyle.Dark;

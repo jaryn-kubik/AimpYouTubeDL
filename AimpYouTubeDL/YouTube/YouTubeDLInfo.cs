@@ -1,5 +1,4 @@
-﻿using AimpYouTubeDL.Api;
-using AimpYouTubeDL.Api.Core;
+﻿using AimpYouTubeDL.Api.Core;
 using AimpYouTubeDL.Api.FileManager;
 using AimpYouTubeDL.Api.FileManager.Enums;
 using AimpYouTubeDL.Api.Objects;
@@ -29,7 +28,7 @@ namespace AimpYouTubeDL.YouTube
 
 		public IAIMPFileInfo ToAimpFileInfo()
 		{
-			var fileInfo = PluginWrapper.Core.CreateObject<IAIMPFileInfo>();
+			var fileInfo = Plugin.Core.CreateObject<IAIMPFileInfo>();
 			UpdateAimpFileInfo(fileInfo);
 			return fileInfo;
 		}
