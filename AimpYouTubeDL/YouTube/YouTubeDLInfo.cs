@@ -3,6 +3,7 @@ using AimpYouTubeDL.Api.FileManager;
 using AimpYouTubeDL.Api.FileManager.Enums;
 using AimpYouTubeDL.Api.Objects;
 using Python.Runtime;
+using System.Diagnostics;
 
 namespace AimpYouTubeDL.YouTube
 {
@@ -20,6 +21,8 @@ namespace AimpYouTubeDL.YouTube
 
 		public void UpdateAimpFileInfo(IAIMPFileInfo fileInfo)
 		{
+			Trace.WriteLine(nameof(UpdateAimpFileInfo), nameof(YouTubeDLInfo));
+
 			fileInfo.SetValueAsString(PropIdFileInfo.AIMP_FILEINFO_PROPID_FILENAME, Plugin.Scheme + WebpageUrl);
 			fileInfo.SetValueAsString(PropIdFileInfo.AIMP_FILEINFO_PROPID_TITLE, Title);
 			fileInfo.SetValueAsFloat(PropIdFileInfo.AIMP_FILEINFO_PROPID_DURATION, Duration);

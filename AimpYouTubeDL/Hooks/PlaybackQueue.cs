@@ -7,6 +7,7 @@ using AimpYouTubeDL.Api.Player.Enums;
 using AimpYouTubeDL.Api.Playlists;
 using AimpYouTubeDL.Api.Playlists.Enums;
 using AimpYouTubeDL.Utils;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace AimpYouTubeDL.Hooks
@@ -15,16 +16,20 @@ namespace AimpYouTubeDL.Hooks
 	{
 		public HRESULT GetNext(object Current, FlagsPlaybackQueue Flags, IAIMPPlaybackQueueItem QueueItem)
 		{
+			Trace.WriteLine(nameof(GetNext), nameof(PlaybackQueue));
 			return HRESULT.S_OK;
 		}
 
 		public HRESULT GetPrev(object Current, FlagsPlaybackQueue Flags, IAIMPPlaybackQueueItem QueueItem)
 		{
+			Trace.WriteLine(nameof(GetPrev), nameof(PlaybackQueue));
 			return HRESULT.S_OK;
 		}
 
 		public void OnSelect(IAIMPPlaylistItem Item, IAIMPPlaybackQueueItem QueueItem)
 		{
+			Trace.WriteLine(nameof(OnSelect), nameof(PlaybackQueue));
+
 			Helpers.TryCatch(() =>
 			{
 				var fileInfo = Item.GetValueAsObject<IAIMPFileInfo>(PropIdPlaylistItem.AIMP_PLAYLISTITEM_PROPID_FILEINFO);

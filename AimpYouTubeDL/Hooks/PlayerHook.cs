@@ -2,6 +2,7 @@
 using AimpYouTubeDL.Api.Objects;
 using AimpYouTubeDL.Api.Player;
 using AimpYouTubeDL.Utils;
+using System.Diagnostics;
 
 namespace AimpYouTubeDL.Hooks
 {
@@ -9,6 +10,8 @@ namespace AimpYouTubeDL.Hooks
 	{
 		public HRESULT OnCheckURL(IAIMPString URL, ref bool Handled)
 		{
+			Trace.WriteLine(nameof(OnCheckURL), nameof(PlayerHook));
+
 			Handled = Helpers.TryCatch(() =>
 			{
 				if (URL.TryGetInfo(out var info))

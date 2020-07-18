@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace AimpYouTubeDL.Utils
 {
@@ -10,8 +11,16 @@ namespace AimpYouTubeDL.Utils
 
 		public Logger(string dirAppData)
 		{
-			var path = Path.Combine(dirAppData, Plugin.Name + ".log");
+			var process = Process.GetCurrentProcess().ProcessName;
+			var now = DateTime.Now;
+			var path = Path.Combine(dirAppData, $"{Plugin.Name}_{process}_{now:yyyyMMdd}_{now:HHmmss}.log");
 			_stream = new StreamWriter(path, false) { AutoFlush = true };
+
+			new DirectoryInfo(dirAppData)
+			   .EnumerateFiles("*.log")
+			   .Where(x => x.CreationTime < now.AddDays(-1))
+			   .ToList()
+			   .ForEach(x => x.Delete());
 		}
 
 		public override void Close()

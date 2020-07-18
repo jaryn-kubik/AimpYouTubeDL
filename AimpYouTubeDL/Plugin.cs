@@ -99,6 +99,7 @@ namespace AimpYouTubeDL
 					return false;
 				}
 
+				Trace.WriteLine(nameof(Initialize) + "Start", nameof(Plugin));
 				_options = Options.Load(dirAppData);
 				_youtube = new YouTubeDL(dirAppData);
 				if (Options.AutoUpdate)
@@ -117,11 +118,13 @@ namespace AimpYouTubeDL
 			});
 			Marshal.CleanupUnusedObjectsInCurrentContext();
 			Collect();
+			Trace.WriteLine(nameof(Initialize) + "End", nameof(Plugin));
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
 		}
 
 		public HRESULT Finalize()
 		{
+			Trace.WriteLine(nameof(Finalize) + "Start", nameof(Plugin));
 			var result = Helpers.TryCatch(() =>
 			{
 				_youtube?.Dispose();
@@ -131,7 +134,7 @@ namespace AimpYouTubeDL
 				Marshal.CleanupUnusedObjectsInCurrentContext();
 				Collect();
 			});
-			Trace.WriteLine(nameof(Finalize), nameof(Plugin));
+			Trace.WriteLine(nameof(Finalize) + "End", nameof(Plugin));
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
 		}
 

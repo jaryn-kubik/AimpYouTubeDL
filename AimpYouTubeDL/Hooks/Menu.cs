@@ -6,6 +6,7 @@ using AimpYouTubeDL.Api.Objects;
 using AimpYouTubeDL.Api.Playlists;
 using AimpYouTubeDL.Api.Playlists.Enums;
 using AimpYouTubeDL.Utils;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace AimpYouTubeDL.Hooks
@@ -14,6 +15,8 @@ namespace AimpYouTubeDL.Hooks
 	{
 		public static void AddPlaylistAddingMenu()
 		{
+			Trace.WriteLine(nameof(AddPlaylistAddingMenu), nameof(Menu));
+
 			var manager = Plugin.Core.GetService<IAIMPServiceMenuManager>();
 			manager.GetBuiltIn(MenuId.AIMP_MENUID_PLAYER_PLAYLIST_ADDING, out var menuPlaylistAdding).EnsureSuccess();
 
@@ -27,6 +30,8 @@ namespace AimpYouTubeDL.Hooks
 
 		private static void OnPlaylistAddingMenu()
 		{
+			Trace.WriteLine(nameof(OnPlaylistAddingMenu), nameof(Menu));
+
 			Helpers.TryCatch(() =>
 			{
 				var form = new PlaybackAddForm(Helpers.GetVisualStyle());
@@ -39,6 +44,8 @@ namespace AimpYouTubeDL.Hooks
 
 		private static void AddToPlaylist(string url, string newPlaylist)
 		{
+			Trace.WriteLine(nameof(AddToPlaylist), nameof(Menu));
+
 			var infos = Plugin.YouTube.GetInfo(url);
 			var list = Plugin.Core.CreateObject<IAIMPObjectList>();
 
@@ -54,6 +61,8 @@ namespace AimpYouTubeDL.Hooks
 
 		private static IAIMPPlaylist GetPlaylist(string newPlaylist)
 		{
+			Trace.WriteLine(nameof(GetPlaylist), nameof(Menu));
+
 			if (string.IsNullOrWhiteSpace(newPlaylist))
 			{
 				Plugin.Core.GetService<IAIMPServicePlaylistManager>().GetActivePlaylist(out var playlist).EnsureSuccess();
