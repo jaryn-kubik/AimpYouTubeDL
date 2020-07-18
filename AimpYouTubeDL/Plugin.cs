@@ -59,6 +59,7 @@ namespace AimpYouTubeDL
 
 		private void Collect()
 		{
+			Marshal.CleanupUnusedObjectsInCurrentContext();
 			for (var i = 0; i <= GC.MaxGeneration; i++)
 			{
 				GC.WaitForPendingFinalizers();
@@ -109,14 +110,12 @@ namespace AimpYouTubeDL
 
 				core.RegisterExtension<IAIMPServicePlayer>(new PlayerHook());
 				core.RegisterExtension<IAIMPServicePlaybackQueue>(new PlaybackQueue());
+				core.RegisterExtension<IAIMPServiceAlbumArt>(new AlbumArtProvider());
 
 				core.RegisterExtension<IAIMPServiceOptionsDialog>(new OptionsFrame());
 				Menu.AddPlaylistAddingMenu();
-
-				core.RegisterExtension<IAIMPServiceAlbumArt>(new AlbumArtProvider());
 				return true;
 			});
-			Marshal.CleanupUnusedObjectsInCurrentContext();
 			Collect();
 			Trace.WriteLine(nameof(Initialize) + "End", nameof(Plugin));
 			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
@@ -131,7 +130,6 @@ namespace AimpYouTubeDL
 				_youtube = null;
 				_options = null;
 				Marshal.FinalReleaseComObject(_core);
-				Marshal.CleanupUnusedObjectsInCurrentContext();
 				Collect();
 			});
 			Trace.WriteLine(nameof(Finalize) + "End", nameof(Plugin));
