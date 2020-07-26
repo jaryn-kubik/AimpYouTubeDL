@@ -46,7 +46,6 @@ namespace AimpYouTubeDL.Config
 			{
 				if (id == NotificationOptionsDialog.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_SAVE)
 				{
-					Plugin.Options.AutoUpdate = _form.OptionAutoUpdate;
 					Plugin.Options.Format = _form.OptionFormat;
 					Plugin.Options.Auths = new List<OptionsAuth>(_form.OptionAuths);
 					Plugin.Options.Auths.Sort((x, y) => x.Extractor.CompareTo(y.Extractor));
@@ -55,7 +54,6 @@ namespace AimpYouTubeDL.Config
 				}
 				if (id == NotificationOptionsDialog.AIMP_SERVICE_OPTIONSDIALOG_NOTIFICATION_LOAD)
 				{
-					_form.OptionAutoUpdate = Plugin.Options.AutoUpdate;
 					_form.OptionFormat = Plugin.Options.Format;
 					_form.Version = Plugin.YouTube.Version;
 					_form.OptionAuths = new List<OptionsAuth>(Plugin.Options.Auths);

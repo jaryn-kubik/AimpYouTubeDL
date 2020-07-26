@@ -17,9 +17,6 @@ namespace AimpYouTubeDL.Config
 		private Options() { }
 		private Options(string path) { _path = path; }
 
-		[XmlElement, DefaultValue(true)]
-		public bool AutoUpdate { get; set; } = true;
-
 		[XmlElement, DefaultValue(_formatDefault)]
 		public string Format
 		{

@@ -2,6 +2,7 @@
 using AimpYouTubeDL.Api.Plugins;
 using NXPorts.Attributes;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -18,9 +19,9 @@ namespace AimpYouTubeDL
 				var name = new AssemblyName(args.Name).Name;
 				var dir = Path.GetDirectoryName(typeof(EntryPoint).Assembly.Location);
 				var path = Path.Combine(dir, name + ".dll");
-				return File.Exists(path)
-					? Assembly.LoadFrom(path)
-					: null;
+				var exists = File.Exists(path);
+				Trace.WriteLine($"AssemblyResolve {exists} - {path}", nameof(EntryPoint));
+				return exists ? Assembly.LoadFrom(path) : null;
 			};
 		}
 

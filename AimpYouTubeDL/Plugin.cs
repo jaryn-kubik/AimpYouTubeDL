@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace AimpYouTubeDL
 {
@@ -85,6 +86,9 @@ namespace AimpYouTubeDL
 			_corePtr = Marshal.GetIUnknownForObject(core);
 			_core = core;
 
+			AppDomain.CurrentDomain.UnhandledException += (s, e) => Helpers.HandleException(e.ExceptionObject as Exception);
+			TaskScheduler.UnobservedTaskException += (s, e) => { Helpers.HandleException(e.Exception); e.SetObserved(); };
+
 			var result = Helpers.TryCatch(() =>
 			{
 				core.GetPath(CorePath.AIMP_CORE_PATH_PROFILE, out var dirProfile).EnsureSuccess();
@@ -103,10 +107,7 @@ namespace AimpYouTubeDL
 				Trace.WriteLine(nameof(Initialize) + "Start", nameof(Plugin));
 				_options = Options.Load(dirAppData);
 				_youtube = new YouTubeDL(dirAppData);
-				if (Options.AutoUpdate)
-				{
-					YouTube.Update();
-				}
+				Task.Run(YouTube.Update);
 
 				core.RegisterExtension<IAIMPServicePlayer>(new PlayerHook());
 				core.RegisterExtension<IAIMPServicePlaybackQueue>(new PlaybackQueue());

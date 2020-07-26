@@ -1,11 +1,13 @@
 ﻿using Python.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Caching;
+using System.Threading;
 
 namespace AimpYouTubeDL.YouTube
 {
@@ -21,6 +23,7 @@ namespace AimpYouTubeDL.YouTube
 		private readonly string _file;
 		private readonly string _cookieFile;
 
+		private int _updating;
 		private IntPtr _python;
 		private Lazy<PyObject> _module = new Lazy<PyObject>(() => Py.Import(_moduleName));
 		private readonly Dictionary<string, PyObject> _instances = new Dictionary<string, PyObject>();
@@ -85,7 +88,15 @@ namespace AimpYouTubeDL.YouTube
 		{
 			var newValue = new Lazy<List<YouTubeDLInfo>>(() => GetInfoInternal(url));
 			var value = _cache.AddOrGetExisting(url, newValue, DateTime.Now.AddMinutes(5)) as Lazy<List<YouTubeDLInfo>>;
-			return (value ?? newValue).Value;
+			try
+			{
+				return (value ?? newValue).Value;
+			}
+			catch (Exception)
+			{
+				_cache.Remove(url);
+				throw;
+			}
 		}
 
 		private List<YouTubeDLInfo> GetInfoInternal(string url)
@@ -182,6 +193,12 @@ namespace AimpYouTubeDL.YouTube
 
 		public (string prev, string current) Update()
 		{
+			Trace.WriteLine(nameof(Update), nameof(YouTubeDL));
+			if (Interlocked.Exchange(ref _updating, 1) == 1)
+			{
+				throw new Exception("already updating youtube-dl");
+			}
+
 			var currentVersion = GetVersion();
 			using (var http = new HttpClient())
 			{
@@ -200,7 +217,9 @@ namespace AimpYouTubeDL.YouTube
 					stream.CopyTo(fileStream);
 				}
 			}
+
 			Version = GetVersion();
+			_updating = 0;
 			return (currentVersion, Version);
 		}
 
@@ -220,9 +239,9 @@ namespace AimpYouTubeDL.YouTube
 
 		private void EnsureModuleExists()
 		{
-			if (!File.Exists(_file))
+			if (Version == _versionInvalid)
 			{
-				Update();
+				throw new Exception("youtube-dl not found (invalid version)");
 			}
 		}
 	}

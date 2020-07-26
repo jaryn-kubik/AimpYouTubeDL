@@ -53,10 +53,23 @@ namespace AimpYouTubeDL.Utils
 			}
 		}
 
-		private static void HandleException(Exception ex)
+		public static void HandleException(Exception ex)
 		{
-			Trace.Fail(ex.ToString());
-			MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if (ex is AggregateException agg)
+			{
+				Trace.Fail(agg.ToString());
+				foreach (var e in agg.InnerExceptions)
+				{
+					Trace.Fail(e.ToString());
+				}
+				var msg = string.Join(Environment.NewLine, agg.InnerExceptions.Select(x => x.Message));
+				MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				Trace.Fail(ex?.ToString());
+				MessageBox.Show(ex?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		public static VisualStyle GetVisualStyle()
