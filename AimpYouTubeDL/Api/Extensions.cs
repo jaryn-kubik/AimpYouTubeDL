@@ -11,5 +11,10 @@ namespace AimpYouTubeDL.Api
 				throw new Exception(result.ToString());
 			}
 		}
+
+		public static HRESULT ToHRESULT(this bool result)
+		{
+			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
+		}
 	}
 }

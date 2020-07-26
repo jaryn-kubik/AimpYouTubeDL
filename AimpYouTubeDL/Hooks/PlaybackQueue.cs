@@ -35,7 +35,7 @@ namespace AimpYouTubeDL.Hooks
 				return HRESULT.S_OK;
 			}
 
-			Helpers.TryCatch(() =>
+			var result = Helpers.TryCatch(() =>
 			{
 				var current = (IAIMPPlaylistItem)Current;
 				var fileInfo = current.GetValueAsObject<IAIMPFileInfo>(PropIdPlaylistItem.AIMP_PLAYLISTITEM_PROPID_FILEINFO);
@@ -48,7 +48,7 @@ namespace AimpYouTubeDL.Hooks
 				}
 				Marshal.FinalReleaseComObject(fileInfo);
 			});
-			return HRESULT.S_OK;
+			return result.ToHRESULT();
 		}
 	}
 }

@@ -15,9 +15,8 @@ namespace AimpYouTubeDL.Utils
 
 		public HRESULT Execute(IAIMPTaskOwner Owner)
 		{
-			return (Owner.IsCanceled() || Helpers.TryCatch(_action))
-				? HRESULT.S_OK
-				: HRESULT.E_FAIL;
+			var result = Owner.IsCanceled() || Helpers.TryCatch(_action);
+			return result.ToHRESULT();
 		}
 	}
 }

@@ -61,11 +61,10 @@ namespace AimpYouTubeDL
 		private void Collect()
 		{
 			Marshal.CleanupUnusedObjectsInCurrentContext();
+			GC.WaitForPendingFinalizers();
 			for (var i = 0; i <= GC.MaxGeneration; i++)
 			{
-				GC.WaitForPendingFinalizers();
 				GC.Collect();
-				GC.WaitForPendingFinalizers();
 			}
 		}
 
@@ -119,7 +118,7 @@ namespace AimpYouTubeDL
 			});
 			Collect();
 			Trace.WriteLine(nameof(Initialize) + "End", nameof(Plugin));
-			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
+			return result.ToHRESULT();
 		}
 
 		public HRESULT Finalize()
@@ -134,7 +133,7 @@ namespace AimpYouTubeDL
 				Collect();
 			});
 			Trace.WriteLine(nameof(Finalize) + "End", nameof(Plugin));
-			return result ? HRESULT.S_OK : HRESULT.E_FAIL;
+			return result.ToHRESULT();
 		}
 
 		public void SystemNotification(SystemNotification NotifyId, IntPtr Data) { }
